@@ -1,0 +1,8 @@
+@theme {
+  --color-primary: hsl(232deg, 97%, 85%);
+  --color-secondary: hsl(0deg, 59%, 88%);
+  --color-text: hsl(226deg, 64%, 88%);
+  --color-subtext: hsl(228deg, 24%, 72%);
+  --color-base: hsl(240deg, 21%, 15%);
+  --color-crust: hsl(240deg, 23%, 9%);
+}

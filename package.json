@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "ags": "*",
+    "gnim": "*"
+  },
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.13"
+  }
+}

@@ -1,0 +1,36 @@
+@import "./custom.css";
+@import "./theme.css";
+@import "tailwindcss/theme.css";
+@import "tailwindcss/utilities.css";
+
+
+@source not inline("visible");
+@source not inline("static");
+@source not inline("flex");
+@source not inline("truncate");
+
+
+:root {
+  font-size: 18px;
+}
+
+@theme {
+  /* Remove line height */
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+
+  --icon-size-lg: 32px;
+  --icon-size-xl: 42px;
+  --icon-size-2xl: 64px;
+  --icon-size-3xl: 75px;
+}
+
+@utility icon-* {
+  -gtk-icon-size: --value(--icon-size-*);
+}
+

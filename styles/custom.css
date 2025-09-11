@@ -13,15 +13,19 @@ window.shell-bar {
 popover contents {
   border-style: solid;
   border-width: 2px;
-  @apply bg-base text-text p-4 rounded-lg border-border;
+  @apply bg-base text-text p-2 rounded-lg border-border text-md;
 }
 
-popover contents modelbutton label {
-  @apply mb-1 mt-1;
+popover contents modelbutton {
+  @apply pr-2.5 pl-2.5 pt-1 pb-1 rounded-lg;
+}
+
+popover contents modelbutton:hover {
+  @apply bg-border/50;
 }
 
 popover contents modelbutton:hover label {
-  @apply text-primary font-bold;
+  @apply text-primary;
 }
 
 popover contents separator {
@@ -72,4 +76,12 @@ calendar grid label.today {
 
 calendar grid label.other-month {
   @apply text-subtext;
+}
+
+menubutton.tray-item button box contents {
+  @apply p-1 rounded-lg;
+}
+
+menubutton.tray-item button:hover box contents {
+  @apply bg-border/50;
 }

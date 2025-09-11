@@ -15,10 +15,13 @@ export function SysTray() {
   }
 
   return (
-    <box spacing={10}>
+    <box spacing={4} class="tray">
       <For each={items}>
         {(item) => (
-          <menubutton $={(self) => init(self, item)} class="tray-item">
+          <menubutton
+            $={(self) => init(self, item)}
+            class="tray-item"
+          >
             <image gicon={createBinding(item, "gicon")} />
           </menubutton>
         )}

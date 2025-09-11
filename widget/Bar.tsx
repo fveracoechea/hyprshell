@@ -36,7 +36,10 @@ export default function Bar(props: BarProps) {
         <box $type="start" spacing={30}>
           <box spacing={12}>
             <label label="󱄅" class="text-primary text-2xl" />
-            <label label={username} class="text-secondary" />
+            <label
+              label={username}
+              class="text-secondary font-bold uppercase"
+            />
           </box>
           <SysTray />
         </box>

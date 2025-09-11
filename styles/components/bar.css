@@ -1,0 +1,7 @@
+window.shell-bar {
+  border-style: solid;
+  border-width: 2px;
+  @apply bg-base p-2.5 pb-2.5 pl-5 pr-5 border-primary rounded-xl mr-5 ml-5 mt-2
+    mb-2 min-w-[1800px];
+}
+

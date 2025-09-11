@@ -1,20 +1,15 @@
 import { Gtk } from "ags/gtk4";
 import { createPoll } from "ags/time";
 
-export function Time() {
-  const time = createPoll("", 5000, `date +"%I:%M %p"`);
-  return (
-    <button class="bg-transparent text-text">
-      <label label={time} />
-    </button>
-  );
-}
-
 export function Calendar() {
-  const date = createPoll("", 1000 * 60, `date +"%A, %B %d"`);
+  const time = createPoll("", 1000 * 10, `date +"%I:%M %p"`);
+  const date = createPoll("", 1000 * 60 * 60, `date +"%A, %B %d"`);
   return (
-    <menubutton>
-      <label label={date} class="bg-transparent text-text" />
+    <menubutton class="button">
+      <box spacing={12}>
+        <label label={time} class="text-primary" />
+        <label label={date} class="text-primary" />
+      </box>
       <popover>
         <Gtk.Calendar />
       </popover>

@@ -26,6 +26,7 @@
       tray
       mpris
       apps
+      hyprland
       # notifd tray wireplumber
     ];
 

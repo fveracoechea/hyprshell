@@ -1,0 +1,9 @@
+/* System Tray Component Styles */
+
+menubutton.tray-item button box contents {
+  @apply p-1 rounded-lg;
+}
+
+menubutton.tray-item button:hover box contents {
+  @apply bg-border/50;
+}

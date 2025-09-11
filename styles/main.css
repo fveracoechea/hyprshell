@@ -1,17 +1,25 @@
-@import "./custom.css";
 @import "./theme.css";
+@import "./components/bar.css";
+@import "./components/button.css";
+@import "./components/systray.css";
+@import "./components/popover.css";
+@import "./components/calendar.css";
+
 @import "tailwindcss/theme.css";
 @import "tailwindcss/utilities.css";
-
 
 @source not inline("visible");
 @source not inline("static");
 @source not inline("flex");
 @source not inline("truncate");
 
-
 :root {
   font-size: 18px;
+}
+
+* {
+  all: unset;
+  -gtk-icon-size: 24px;
 }
 
 @theme {

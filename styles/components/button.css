@@ -1,0 +1,7 @@
+.button {
+  @apply rounded-lg pr-3 pl-3;
+}
+
+.button:hover {
+  @apply bg-border/50;
+}

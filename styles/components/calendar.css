@@ -1,0 +1,33 @@
+/* Calendar Component Styles */
+
+calendar grid label {
+  @apply rounded-lg m-1;
+}
+
+calendar header {
+  @apply mb-4 mt-1;
+}
+
+calendar header button {
+  @apply pr-1 pl-1;
+}
+
+calendar header stack.month {
+  @apply text-secondary;
+}
+
+calendar header label.year {
+  @apply text-secondary;
+}
+
+calendar grid label.day-name {
+  @apply text-primary font-bold;
+}
+
+calendar grid label.today {
+  @apply bg-primary text-crust font-bold;
+}
+
+calendar grid label.other-month {
+  @apply text-subtext;
+}

@@ -13,7 +13,7 @@ export function Time() {
 export function Calendar() {
   const date = createPoll("", 1000 * 60, `date +"%A, %B %d"`);
   return (
-    <menubutton class="">
+    <menubutton>
       <label label={date} class="bg-transparent text-text" />
       <popover>
         <Gtk.Calendar />

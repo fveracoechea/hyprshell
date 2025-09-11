@@ -1,10 +1,45 @@
 * {
   all: unset;
-  -gtk-icon-size: 18px;
+  -gtk-icon-size: 24px;
 }
 
-calendar {
-  @apply bg-base text-text p-4 rounded-lg;
+window.shell-bar {
+  border-style: solid;
+  border-width: 2px;
+  @apply bg-base p-2 pb-2 pl-5 pr-5 border-border rounded-lg mr-5 ml-5 mt-2
+    mb-2;
+}
+
+popover contents {
+  border-style: solid;
+  border-width: 2px;
+  @apply bg-base text-text p-4 rounded-lg border-border;
+}
+
+popover contents modelbutton label {
+  @apply mb-1 mt-1;
+}
+
+popover contents modelbutton:hover label {
+  @apply text-primary font-bold;
+}
+
+popover contents separator {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  @apply border-b-border mb-2 mt-2;
+}
+
+popover contents modelbutton arrow {
+  @apply min-h-2 min-w-2 text-subtext;
+}
+
+popover contents modelbutton arrow.right {
+  -gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
+}
+
+popover contents modelbutton arrow.left {
+  -gtk-icon-source: -gtk-icontheme("pan-start-symbolic");
 }
 
 calendar grid label {

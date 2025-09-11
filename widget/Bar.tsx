@@ -1,26 +1,44 @@
 import app from "ags/gtk4/app";
-import { Astal, Gdk, Gtk } from "ags/gtk4";
+import { Astal, Gdk } from "ags/gtk4";
 import { exec } from "ags/process";
 import { Calendar, Time } from "./Calendar";
+import { onCleanup } from "ags";
+import { SysTray } from "./SysTray";
 
-export default function Bar(gdkmonitor: Gdk.Monitor) {
+type BarProps = { gdkmonitor: Gdk.Monitor };
+
+export default function Bar(props: BarProps) {
+  const { gdkmonitor } = props;
+
+  let win: Astal.Window;
   const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
   const username = exec("whoami").trim();
 
+  onCleanup(() => {
+    // Root components (windows) are not automatically destroyed.
+    // When the monitor is disconnected from the system, this callback
+    // is run from the parent <For> which allows us to destroy the window
+    win.destroy();
+  });
+
   return (
     <window
+      $={(self) => (win = self)}
       visible
       name="bar"
-      class="bg-base pt-2 pb-2 pl-10 pr-10"
+      class="shell-bar"
       gdkmonitor={gdkmonitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={TOP | LEFT | RIGHT}
       application={app}
     >
       <centerbox cssName="centerbox">
-        <box $type="start" spacing={12}>
-          <label label="󱄅" class="text-primary text-2xl" />
-          <label label={username} class="text-secondary" />
+        <box $type="start" spacing={30}>
+          <box spacing={12}>
+            <label label="󱄅" class="text-primary text-2xl" />
+            <label label={username} class="text-secondary" />
+          </box>
+          <SysTray />
         </box>
 
         <box $type="center" spacing={12}>

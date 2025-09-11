@@ -5,4 +5,5 @@
   --color-subtext: hsl(228deg, 24%, 72%);
   --color-base: hsl(240deg, 21%, 15%);
   --color-crust: hsl(240deg, 23%, 9%);
+  --color-border: hsl(233deg, 12%, 39%);
 }

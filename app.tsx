@@ -1,5 +1,6 @@
 import app from "ags/gtk4/app";
 import Bar from "./widget/Bar";
+import { createBinding, For, This } from "ags";
 import { exec } from "ags/process";
 
 const style = exec("tailwindcss -i styles/main.css")
@@ -10,6 +11,15 @@ const style = exec("tailwindcss -i styles/main.css")
 app.start({
   css: style,
   main() {
-    app.get_monitors().map(Bar);
+    const monitors = createBinding(app, "monitors");
+    return (
+      <For each={monitors}>
+        {(monitors) => (
+          <This this={app}>
+            <Bar gdkmonitor={monitors} />
+          </This>
+        )}
+      </For>
+    );
   },
 });

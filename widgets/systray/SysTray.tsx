@@ -15,7 +15,7 @@ export function SysTray() {
   }
 
   return (
-    <box class="tray" spacing={4}>
+    <box class="tray">
       <For each={items}>
         {(item) => (
           <menubutton

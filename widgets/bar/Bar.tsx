@@ -8,13 +8,14 @@ import { Volume } from "../volume/Volume";
 import { Network } from "../network/Network";
 import { Workspaces } from "../workspaces/Workspaces";
 import { Notifications } from "../notifications/Notifications";
+import { Bluetooth } from "../bluetooth/Bluetooth";
 
 type BarProps = { gdkmonitor: Gdk.Monitor };
 
 export default function Bar(props: BarProps) {
   const { gdkmonitor } = props;
 
-  const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
+  const { TOP } = Astal.WindowAnchor;
   const username = exec("whoami").trim();
 
   return (
@@ -45,12 +46,13 @@ export default function Bar(props: BarProps) {
         </box>
 
         <box $type="end" spacing={28}>
-          <box spacing={4}>
+          <SysTray />
+          <box>
             <Notifications />
             <Volume />
             <Network />
+            <Bluetooth />
           </box>
-          <SysTray />
         </box>
       </centerbox>
     </window>

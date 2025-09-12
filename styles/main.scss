@@ -6,9 +6,10 @@
 
 // Widget-specific styles
 @use "../widgets/bar/bar";
-@use "../widgets/calendar/calendar";
 @use "../widgets/systray/systray";
+@use "../widgets/calendar/calendar";
 @use "../widgets/workspaces/workspaces";
+@use "../widgets/notifications/notifications";
 
 :root {
   font-size: 18px;

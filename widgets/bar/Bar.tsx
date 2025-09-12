@@ -5,26 +5,19 @@ import { Calendar } from "../calendar/Calendar";
 import { onCleanup } from "ags";
 import { SysTray } from "../systray/SysTray";
 import { Workspaces } from "../workspaces/Workspaces";
+import { Notifications } from "../notifications/Notifications";
 
 type BarProps = { gdkmonitor: Gdk.Monitor };
 
 export default function Bar(props: BarProps) {
   const { gdkmonitor } = props;
 
-  let win: Astal.Window;
   const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
   const username = exec("whoami").trim();
 
-  onCleanup(() => {
-    // Root components (windows) are not automatically destroyed.
-    // When the monitor is disconnected from the system, this callback
-    // is run from the parent <For> which allows us to destroy the window
-    win.destroy();
-  });
-
   return (
     <window
-      $={(self) => (win = self)}
+      $={(self) => onCleanup(() => self.destroy())}
       visible
       name="bar"
       class="shell-bar"
@@ -34,7 +27,7 @@ export default function Bar(props: BarProps) {
       application={app}
     >
       <centerbox cssName="centerbox">
-        <box $type="start" spacing={30}>
+        <box $type="start" spacing={28}>
           <box spacing={12}>
             <label label="󱄅" class="logo-icon" />
             <label
@@ -42,7 +35,8 @@ export default function Bar(props: BarProps) {
               class="username"
             />
           </box>
-          <SysTray />
+          <Workspaces />
+          <Notifications />
         </box>
 
         <box $type="center">
@@ -50,10 +44,9 @@ export default function Bar(props: BarProps) {
         </box>
 
         <box $type="end">
-          <Workspaces />
+          <SysTray />
         </box>
       </centerbox>
     </window>
   );
 }
-

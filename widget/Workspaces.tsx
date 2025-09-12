@@ -12,16 +12,21 @@ export function Workspaces() {
   return (
     <With value={focusedWorkspace}>
       {(fw) => (
-        <box spacing={6} class="workspaces">
+        <box class="workspaces">
           <For each={workspaces}>
-            {(w) => (
-              <label
-                label={String(w.id)}
-                class={fw.id === w.id
-                  ? "text-primary font-bold text-xl"
-                  : "text-xl"}
-              />
-            )}
+            {(w) => {
+              const isActive = fw.id === w.id;
+              return (
+                <button class={`button sm ${isActive ? "active" : ""}`}>
+                  <label
+                    label={String(w.id)}
+                    class={isActive
+                      ? "text-crust font-bold text-lg"
+                      : "text-lg text-text"}
+                  />
+                </button>
+              );
+            }}
           </For>
         </box>
       )}

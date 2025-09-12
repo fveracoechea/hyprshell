@@ -1,7 +1,17 @@
 .button {
+  transition: color 250ms ease, background-color 250 ease;
   @apply rounded-lg pr-3 pl-3;
 }
 
+.button.sm {
+  transition: color 250ms ease, background-color 250 ease;
+  @apply pr-2 pl-2;
+}
+
+.button.active {
+  @apply bg-primary text-crust;
+}
+
 .button:hover {
-  @apply bg-border/50;
+  @apply bg-border/50 text-primary;
 }

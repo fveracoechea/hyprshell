@@ -6,7 +6,9 @@
 
 // Widget-specific styles
 @use "../widgets/bar/bar";
+@use "../widgets/volume/volume";
 @use "../widgets/systray/systray";
+@use "../widgets/network/network";
 @use "../widgets/calendar/calendar";
 @use "../widgets/workspaces/workspaces";
 @use "../widgets/notifications/notifications";

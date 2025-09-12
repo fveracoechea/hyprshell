@@ -4,6 +4,8 @@ import { exec } from "ags/process";
 import { Calendar } from "../calendar/Calendar";
 import { onCleanup } from "ags";
 import { SysTray } from "../systray/SysTray";
+import { Volume } from "../volume/Volume";
+import { Network } from "../network/Network";
 import { Workspaces } from "../workspaces/Workspaces";
 import { Notifications } from "../notifications/Notifications";
 
@@ -36,14 +38,18 @@ export default function Bar(props: BarProps) {
             />
           </box>
           <Workspaces />
-          <Notifications />
         </box>
 
         <box $type="center">
           <Calendar />
         </box>
 
-        <box $type="end">
+        <box $type="end" spacing={28}>
+          <box spacing={4}>
+            <Notifications />
+            <Volume />
+            <Network />
+          </box>
           <SysTray />
         </box>
       </centerbox>

@@ -1,7 +1,7 @@
 export function Notifications() {
   return (
     <box>
-      <button class="nt button-sm">{"󰂚"}</button>
+      <button class="icon-button">{"󰂚"}</button>
     </box>
   );
 }

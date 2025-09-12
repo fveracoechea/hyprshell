@@ -27,6 +27,7 @@
       mpris
       apps
       hyprland
+      bluetooth
       # notifd tray wireplumber
     ];
 

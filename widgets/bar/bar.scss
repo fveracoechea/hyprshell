@@ -1,0 +1,12 @@
+@use "../../styles/variables" as v;
+
+.logo-icon {
+  color: v.$color-primary;
+  font-size: v.$text-2xl;
+}
+
+.username {
+  color: v.$color-secondary;
+  font-weight: 600;
+  text-transform: uppercase;
+}

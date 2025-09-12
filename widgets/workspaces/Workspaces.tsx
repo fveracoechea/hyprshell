@@ -12,7 +12,7 @@ export function Workspaces() {
   return (
     <With value={focusedWorkspace}>
       {(fw) => (
-        <box class="workspaces">
+        <box class="workspaces" spacing={4}>
           <For each={workspaces}>
             {(w) => {
               const isActive = fw.id === w.id;
@@ -20,9 +20,7 @@ export function Workspaces() {
                 <button class={`button sm ${isActive ? "active" : ""}`}>
                   <label
                     label={String(w.id)}
-                    class={isActive
-                      ? "text-crust font-bold text-lg"
-                      : "text-lg text-text"}
+                    class={`workspace-label ${isActive ? "active" : ""}`}
                   />
                 </button>
               );
@@ -33,3 +31,4 @@ export function Workspaces() {
     </With>
   );
 }
+

@@ -1,0 +1,14 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+.button {
+  @include m.button-base();
+}
+
+.button.sm {
+  @include m.button-sm();
+}
+
+.button.active {
+  @include m.active-state();
+}

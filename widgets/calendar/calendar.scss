@@ -1,0 +1,7 @@
+@use "../../styles/variables" as v;
+
+
+.time-label,
+.date-label {
+  color: v.$color-primary;
+}

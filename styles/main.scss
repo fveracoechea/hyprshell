@@ -1,0 +1,23 @@
+@use "variables";
+@use "mixins";
+@use "components/bar";
+@use "components/button";
+@use "components/systray";
+@use "components/popover";
+@use "components/calendar";
+
+// Widget-specific styles
+@use "../widgets/bar/bar";
+@use "../widgets/calendar/calendar";
+@use "../widgets/systray/systray";
+@use "../widgets/workspaces/workspaces";
+
+:root {
+  font-size: 18px;
+}
+
+* {
+  all: unset;
+  -gtk-icon-size: variables.$icon-size-default;
+}
+

@@ -1,10 +1,10 @@
 import app from "ags/gtk4/app";
 import { Astal, Gdk } from "ags/gtk4";
 import { exec } from "ags/process";
-import { Calendar } from "./Calendar";
+import { Calendar } from "../calendar/Calendar";
 import { onCleanup } from "ags";
-import { SysTray } from "./SysTray";
-import { Workspaces } from "./Workspaces";
+import { SysTray } from "../systray/SysTray";
+import { Workspaces } from "../workspaces/Workspaces";
 
 type BarProps = { gdkmonitor: Gdk.Monitor };
 
@@ -36,10 +36,10 @@ export default function Bar(props: BarProps) {
       <centerbox cssName="centerbox">
         <box $type="start" spacing={30}>
           <box spacing={12}>
-            <label label="󱄅" class="text-primary text-2xl" />
+            <label label="󱄅" class="logo-icon" />
             <label
               label={username}
-              class="text-secondary font-semibold uppercase"
+              class="username"
             />
           </box>
           <SysTray />
@@ -56,3 +56,4 @@ export default function Bar(props: BarProps) {
     </window>
   );
 }
+

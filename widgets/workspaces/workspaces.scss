@@ -1,0 +1,11 @@
+@use "../../styles/variables" as v;
+
+.workspace-label {
+  font-size: v.$text-lg;
+  color: v.$color-text;
+
+  &.active {
+    color: v.$color-crust;
+    font-weight: bold;
+  }
+}

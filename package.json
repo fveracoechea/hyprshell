@@ -8,6 +8,6 @@
     "tabWidth": 2
   },
   "devDependencies": {
-    "tailwindcss": "^4.1.13"
+    "sass": "^1.77.8"
   }
 }

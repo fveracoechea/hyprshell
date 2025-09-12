@@ -1,0 +1,46 @@
+@use "../variables" as v;
+
+popover contents {
+  border-style: solid;
+  border-width: 2px;
+  background-color: v.$color-base;
+  color: v.$color-text;
+  padding: v.$spacing-2;
+  border-radius: v.$radius-lg;
+  border-color: v.$color-border;
+  font-size: v.$text-md;
+
+  modelbutton {
+    padding: v.$spacing-1 v.$spacing-2_5;
+    border-radius: v.$radius-lg;
+
+    &:hover {
+      background-color: rgba(v.$color-border, v.$opacity-50);
+
+      label {
+        color: v.$color-primary;
+      }
+    }
+
+    arrow {
+      min-height: v.$spacing-2;
+      min-width: v.$spacing-2;
+      color: v.$color-subtext;
+
+      &.right {
+        -gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
+      }
+
+      &.left {
+        -gtk-icon-source: -gtk-icontheme("pan-start-symbolic");
+      }
+    }
+  }
+
+  separator {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: v.$color-border;
+    margin: v.$spacing-2 0;
+  }
+}

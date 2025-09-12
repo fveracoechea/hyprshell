@@ -1,0 +1,13 @@
+@use "../variables" as v;
+
+window.shell-bar {
+  border-style: solid;
+  border-width: 2px;
+  background-color: v.$color-base;
+  padding: v.$spacing-2_5 v.$spacing-5;
+  border-color: v.$color-primary;
+  border-radius: v.$radius-xl;
+  margin: v.$spacing-2 v.$spacing-5;
+  min-width: 1800px;
+}
+

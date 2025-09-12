@@ -1,50 +1,9 @@
 @use "variables" as v;
 
-// Utility mixins for common patterns
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 @mixin transition($properties: all, $duration: v.$transition-normal) {
   transition: $properties $duration;
 }
 
-@mixin hover-state($bg-color: rgba(v.$color-border, v.$opacity-50), $text-color: v.$color-primary) {
-  &:hover {
-    background-color: $bg-color;
-    color: $text-color;
-  }
-}
-
-@mixin active-state($bg-color: v.$color-primary, $text-color: v.$color-crust) {
-  &.active {
-    background-color: $bg-color;
-    color: $text-color;
-  }
-}
-
-// Common button styles
-@mixin button-base($padding-x: v.$spacing-3, $padding-y: 0, $radius: v.$radius-lg) {
-  padding: $padding-y $padding-x;
-  border-radius: $radius;
-  transition: color v.$transition-normal, background-color v.$transition-normal;
-  
-  @include hover-state();
-}
-
-@mixin button-sm {
-  @include button-base(v.$spacing-2);
-}
-
-// Icon sizing utility
 @mixin icon-size($size) {
   -gtk-icon-size: $size;
 }

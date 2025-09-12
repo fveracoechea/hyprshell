@@ -1,14 +1,41 @@
-@use "../variables" as v;
-@use "../mixins" as m;
+@use "../variables" as *;
+
+
+@mixin active-state($bg-color: $color-primary, $text-color: $color-crust) {
+  &.active {
+    background-color: $bg-color;
+    color: $text-color;
+  }
+}
+
+
+@mixin button($padding-x: $spacing-3, $padding-y: 0, $radius: $radius-lg) {
+  padding: $padding-y $padding-x;
+  border-radius: $radius;
+  transition: color $transition-normal, background-color $transition-normal;
+  color: $color-text;
+
+  &:hover {
+    background-color: rgba($color-border, $opacity-50);
+    color: $color-primary;
+  }
+}
+
 
 .button {
-  @include m.button-base();
+  @include button();
 }
 
-.button.sm {
-  @include m.button-sm();
+.icon-button {
+  @include button($spacing-1);
 }
 
-.button.active {
-  @include m.active-state();
+.button-sm {
+  @include button($spacing-2);
+}
+
+.button.active,
+.button-sm.active,
+.icon-button.active {
+  @include active-state();
 }

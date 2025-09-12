@@ -19,6 +19,7 @@ export function SysTray() {
       <For each={items}>
         {(item) => (
           <menubutton
+            class="icon-button"
             $={(self) => init(self, item)}
           >
             <image gicon={createBinding(item, "gicon")} />

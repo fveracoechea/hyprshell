@@ -1,12 +1,12 @@
-@use "../../styles/variables" as v;
+@use "../../styles/variables" as *;
 
 menubutton.tray-item button {
   box contents {
-    padding: v.$spacing-1;
-    border-radius: v.$radius-lg;
+    padding: $spacing-1;
+    border-radius: $radius-lg;
   }
 
   &:hover box contents {
-    background-color: rgba(v.$color-border, v.$opacity-50);
+    background-color: rgba($color-border, $opacity-50);
   }
 }

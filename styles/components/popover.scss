@@ -1,31 +1,33 @@
-@use "../variables" as v;
+@use "../variables" as *;
 
 popover contents {
   border-style: solid;
   border-width: 2px;
-  background-color: v.$color-base;
-  color: v.$color-text;
-  padding: v.$spacing-2;
-  border-radius: v.$radius-lg;
-  border-color: v.$color-border;
-  font-size: v.$text-md;
+  background-color: $color-base;
+  color: $color-text;
+  padding: $spacing-2;
+  border-radius: $radius-lg;
+  border-color: $color-border;
+  font-size: $text-md;
 
   modelbutton {
-    padding: v.$spacing-1 v.$spacing-2_5;
-    border-radius: v.$radius-lg;
+    padding: $spacing-1 $spacing-2_5;
+    border-radius: $radius-lg;
+    transition: color $transition-normal, background-color $transition-normal;
+
 
     &:hover {
-      background-color: rgba(v.$color-border, v.$opacity-50);
+      background-color: rgba($color-border, $opacity-50);
 
       label {
-        color: v.$color-primary;
+        color: $color-primary;
       }
     }
 
     arrow {
-      min-height: v.$spacing-2;
-      min-width: v.$spacing-2;
-      color: v.$color-subtext;
+      min-height: $spacing-2;
+      min-width: $spacing-2;
+      color: $color-subtext;
 
       &.right {
         -gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
@@ -40,7 +42,7 @@ popover contents {
   separator {
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    border-bottom-color: v.$color-border;
-    margin: v.$spacing-2 0;
+    border-bottom-color: $color-border;
+    margin: $spacing-2 0;
   }
 }

@@ -12,16 +12,21 @@ export function Workspaces() {
   return (
     <With value={focusedWorkspace}>
       {(fw) => (
-        <box class="workspaces" spacing={4}>
+        <box class="workspaces">
           <For each={workspaces}>
             {(w) => {
               const isActive = fw.id === w.id;
+
+              let classNames = "workspace-button";
+              if (isActive) classNames += " active-workspace";
+
+              function onClick() {
+                hyprland.dispatch("workspace", w.id.toString());
+              }
+
               return (
-                <button class={`button sm ${isActive ? "active" : ""}`}>
-                  <label
-                    label={String(w.id)}
-                    class={`workspace-label ${isActive ? "active" : ""}`}
-                  />
+                <button class={classNames} onClicked={onClick}>
+                  {String(w.id)}
                 </button>
               );
             }}

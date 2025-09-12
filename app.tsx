@@ -1,7 +1,7 @@
 import app from "ags/gtk4/app";
 import Bar from "./widgets/bar/Bar";
 import { createBinding, For, This } from "ags";
-import css from "./styles/main.scss";
+import css from "styles/main.scss";
 
 app.start({
   css,

@@ -30,6 +30,10 @@ calendar {
   }
 
   grid {
+    label.day-number {
+      font-weight: 500;
+    }
+
     label.day-name {
       color: v.$color-primary;
       font-weight: bold;
@@ -43,6 +47,7 @@ calendar {
 
     label.other-month {
       color: v.$color-subtext;
+      font-weight: 300;
     }
   }
 }

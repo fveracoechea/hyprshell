@@ -27,13 +27,11 @@
 }
 
 .tray-button {
-  text-align: center;
   @include button($spacing-2);
   min-width: $spacing-6;
 }
 
 .icon-button {
-  text-align: center;
   @include button($spacing-2);
   padding-right: $spacing-2_5;
   min-width: $spacing-6;

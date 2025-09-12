@@ -3,11 +3,11 @@
 popover contents {
   border-style: solid;
   border-width: 2px;
+  border-color: $color-border;
   background-color: $color-base;
   color: $color-text;
   padding: $spacing-2;
   border-radius: $radius-lg;
-  border-color: $color-border;
   font-size: $text-md;
 
   modelbutton {

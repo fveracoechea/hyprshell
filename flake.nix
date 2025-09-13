@@ -36,6 +36,7 @@
       impala
       wiremix
       blueberry
+      libgtop
     ];
 
     extraPackages =

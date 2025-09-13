@@ -9,6 +9,7 @@ import { Network } from "../network/Network";
 import { Workspaces } from "../workspaces/Workspaces";
 import { Notifications } from "../notifications/Notifications";
 import { Bluetooth } from "../bluetooth/Bluetooth";
+import { CPU } from "../cpu/Cpu";
 
 type BarProps = { gdkmonitor: Gdk.Monitor };
 
@@ -52,6 +53,7 @@ export default function Bar(props: BarProps) {
             <Volume />
             <Network />
             <Bluetooth />
+            <CPU />
           </box>
         </box>
       </centerbox>

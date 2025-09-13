@@ -6,6 +6,8 @@ import {
   createConnection,
   With,
 } from "ags";
+import { execAsync } from "ags/process";
+import { Gtk } from "ags/gtk4";
 
 export function Bluetooth() {
   const bluetooth = AstalBluetooth.get_default();
@@ -31,7 +33,14 @@ export function Bluetooth() {
     <box>
       <With value={iconSignal}>
         {(icon) => (
-          <button tooltipText={tooltip} class="icon-button">
+          <button
+            tooltipText={tooltip}
+            halign={Gtk.Align.CENTER}
+            class="icon-button"
+            onClicked={() => {
+              execAsync("blueberry");
+            }}
+          >
             {icon}
           </button>
         )}

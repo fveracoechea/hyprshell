@@ -1,42 +1,32 @@
-# Agent Guidelines for hyprshell
+# AGENTS.md - HyprShell Development Guide
 
-## Build/Lint/Test Commands
-
-- No npm scripts defined - this is an AGS (Astal GTK4) project
-- Use `ags` command to run the application
-- CSS is built using TailwindCSS: `tailwindcss -i styles/main.css`
-- No test framework configured
+## Build/Test Commands
+- No build/test commands defined in package.json. This appears to be an AGS (Astal) TypeScript/JSX project.
+- Code is likely compiled/bundled by the AGS runtime.
 
 ## Code Style Guidelines
 
-### Imports
+### TypeScript Configuration
+- Strict mode enabled with ES2022 modules and ES2020 target
+- JSX with `jsx: "react-jsx"` and `jsxImportSource: "ags/gtk4"`
 
-- Use `ags/gtk4` for AGS imports: `import app from "ags/gtk4/app"`
-- Use destructured imports for multiple items:
-  `import { Astal, Gdk, Gtk } from "ags/gtk4"`
-- Import components from relative paths: `import Bar from "./widget/Bar"`
-
-### Formatting (Prettier config)
-
+### Formatting (Prettier)
 - No semicolons (`"semi": false`)
 - 2-space indentation (`"tabWidth": 2`)
-- Use double quotes for strings consistently
 
-### TypeScript/JSX
+### Import Style
+- Default imports for components: `import Bar from "./widgets/bar/Bar"`
+- Named imports from libraries: `import { Astal, Gdk } from "ags/gtk4"`
+- CSS imports: `import css from "styles/main.scss"`
 
-- Strict mode enabled in tsconfig.json
-- Use JSX with `jsx: "react-jsx"` and `jsxImportSource: "ags/gtk4"`
-- Target ES2020+ with ES2022 modules
+### File Organization
+- Widgets in `/widgets/{name}/` with `.tsx` and `.scss` files
+- SCSS uses `@use` imports, not `@import`
+- Component files use PascalCase (e.g., `Bar.tsx`, `Volume.tsx`)
 
-### Naming Conventions
-
-- PascalCase for components: `Bar`, `Calendar`, `Time`
-- camelCase for variables and functions: `gdkmonitor`, `createPoll`
-- Use descriptive names for CSS classes: `bg-bg`, `text-primary`
-
-### File Structure
-
-- Components in `/widget/` directory with `.tsx` extension
-- Main app entry in `app.ts`
-- Styles in `/styles/` directory
-
+### Component Style
+- Functional components with TypeScript props interfaces
+- Use AGS JSX elements (`<window>`, `<box>`, `<button>`)
+- Props use `class` for CSS classes, `$type` for box types
+- Event handlers: `onClicked={() => ...}`
+- Use `onCleanup()` for resource cleanup

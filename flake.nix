@@ -31,8 +31,16 @@
       # notifd tray wireplumber
     ];
 
+    extraBuildInputs = with pkgs; [
+      btop
+      impala
+      wiremix
+      blueberry
+    ];
+
     extraPackages =
       astalPackages
+      ++ extraBuildInputs
       ++ [
         pkgs.libadwaita
         pkgs.libsoup_3
@@ -66,12 +74,13 @@
 
     devShells.${system} = {
       default = pkgs.mkShell {
-        buildInputs = [
-          pkgs.tailwindcss_4
-          (ags.packages.${system}.default.override {
-            inherit extraPackages;
-          })
-        ];
+        buildInputs =
+          [
+            (ags.packages.${system}.default.override {
+              inherit extraPackages;
+            })
+          ]
+          ++ extraBuildInputs;
       };
     };
   };

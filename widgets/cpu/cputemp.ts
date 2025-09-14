@@ -1,4 +1,4 @@
-import { readFile, readdir } from "fs/promises"
+import { readFileAsync, readDir, exists } from "ags/utils"
 import { createPoll } from "ags/time"
 import { createComputed } from "ags"
 
@@ -15,7 +15,7 @@ type SensorPath = {
 
 async function listHwmon(): Promise<string[]> {
   try {
-    const dirs = await readdir("/sys/class/hwmon")
+    const dirs = await readDir("/sys/class/hwmon")
     return dirs.map((d) => `/sys/class/hwmon/${d}`)
   } catch {
     return []
@@ -26,17 +26,17 @@ async function detectCpuSensor(): Promise<SensorPath | null> {
   const candidates = /k10temp|coretemp|zenpower|acpitz/i
   for (const dir of await listHwmon()) {
     try {
-      const name = await readFile(`${dir}/name`, "utf8")
+      const name = await readFileAsync(`${dir}/name`)
       if (!candidates.test(name)) continue
 
-      const files = await readdir(dir)
+      const files = await readDir(dir)
       const tempInputs = files.filter((f) => /^temp\d+_input$/.test(f))
       let fallback: SensorPath | null = null
       for (const f of tempInputs) {
         const base = f.replace(/_input$/, "")
         let label: string | undefined
         try {
-          label = (await readFile(`${dir}/${base}_label`, "utf8")).trim()
+          label = (await readFileAsync(`${dir}/${base}_label`)).trim()
         } catch {}
         if (label && /(tctl|package|cpu)/i.test(label)) {
             return { input: `${dir}/${f}`, label }
@@ -50,7 +50,8 @@ async function detectCpuSensor(): Promise<SensorPath | null> {
   }
   // Fallback thermal zone
   try {
-    await readFile("/sys/class/thermal/thermal_zone0/temp", "utf8")
+    const ok = await exists("/sys/class/thermal/thermal_zone0/temp")
+    if (ok)
     return { input: "/sys/class/thermal/thermal_zone0/temp" }
   } catch {}
   return null
@@ -64,7 +65,7 @@ function getSensor(): Promise<SensorPath | null> {
 
 async function readTempMilliC(path: string): Promise<number | null> {
   try {
-    const raw = await readFile(path, "utf8")
+    const raw = await readFileAsync(path)
     const v = parseInt(raw.trim(), 10)
     return Number.isFinite(v) ? v : null
   } catch {

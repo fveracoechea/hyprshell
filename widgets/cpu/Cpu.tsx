@@ -5,26 +5,48 @@ import { createPoll } from "ags/time";
 import { createComputed } from "ags";
 
 type CpuStats = {
-  total: number;
-  idle: number;
+  current: {
+    total: number;
+    idle: number;
+  };
+  previous: {
+    total: number;
+    idle: number;
+  };
 };
 
-const initialStats: CpuStats = { total: 0, idle: 0 };
+const initialStats: CpuStats = {
+  current: { total: 0, idle: 0 },
+  previous: { total: 0, idle: 0 },
+};
 
 export function CPU() {
-  const cpuStats = createPoll(initialStats, 5000, (prev: CpuStats) => {
+  const cpuStats = createPoll(initialStats, 3000, (prev: CpuStats) => {
     const stats = new GTop.glibtop_cpu();
     GTop.glibtop_get_cpu(stats);
     return {
-      total: stats.total - prev.total,
-      idle: stats.idle - prev.idle,
+      current: {
+        total: stats.total as number,
+        idle: stats.idle as number,
+      },
+      previous: {
+        total: prev.current.total,
+        idle: prev.current.idle,
+      },
     };
   });
 
   const tooltip = createComputed((get) => {
-    const { total, idle } = get(cpuStats);
-    const usage = total > 0 ? ((total - idle) / total) * 100 : 0;
-    return `CPU Usage: ${usage.toFixed(1)}%`;
+    const { current, previous } = get(cpuStats);
+
+    const totalDiff = current.total - previous.total;
+    const idleDiff = current.idle - previous.idle;
+
+    const usage = totalDiff > 0
+      ? ((totalDiff - idleDiff) / totalDiff) * 100
+      : 0;
+
+    return `CPU Usage: ${usage.toFixed(0)}%`;
   });
 
   return (

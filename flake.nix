@@ -28,7 +28,8 @@
       apps
       hyprland
       bluetooth
-      # notifd tray wireplumber
+      network
+      # notifd wireplumber
     ];
 
     extraBuildInputs = with pkgs; [

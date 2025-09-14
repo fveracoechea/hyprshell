@@ -9,7 +9,7 @@ import { Network } from "../network/Network";
 import { Workspaces } from "../workspaces/Workspaces";
 import { Notifications } from "../notifications/Notifications";
 import { Bluetooth } from "../bluetooth/Bluetooth";
-import { CPU } from "../cpu/Cpu";
+import { CPU } from "../cpu/CPU";
 
 type BarProps = { gdkmonitor: Gdk.Monitor };
 

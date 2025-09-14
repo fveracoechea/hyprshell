@@ -29,7 +29,8 @@
       hyprland
       bluetooth
       network
-      # notifd wireplumber
+      wireplumber
+      # notifd
     ];
 
     extraBuildInputs = with pkgs; [

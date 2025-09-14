@@ -20,13 +20,13 @@ export function Bluetooth() {
     const connected: boolean = get(isConnectedSignal);
     const devices: AstalBluetooth.Devices[] = get(devicesSignal);
 
-    if (!connected) return "Bluetooth: Disconnected";
+    if (!connected) return "Bluetooth disconnected";
 
     let count = 0;
     for (const device of devices) {
       if (device.connected) count++;
     }
-    return `Bluetooth: ${count} connected`;
+    return `Bluetooth\n${count} connected`;
   });
 
   return (

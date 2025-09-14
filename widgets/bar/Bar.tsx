@@ -1,5 +1,5 @@
 import app from "ags/gtk4/app";
-import { Astal, Gdk } from "ags/gtk4";
+import { Astal, Gdk, Gtk } from "ags/gtk4";
 import { exec } from "ags/process";
 import { Calendar } from "../calendar/Calendar";
 import { onCleanup } from "ags";
@@ -29,6 +29,7 @@ export default function Bar(props: BarProps) {
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={TOP}
       application={app}
+      keymode={Astal.Keymode.ON_DEMAND}
     >
       <centerbox cssName="centerbox">
         <box $type="start" spacing={28}>

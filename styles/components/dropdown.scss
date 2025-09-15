@@ -1,0 +1,25 @@
+@use "../variables" as *;
+
+.dropdown-container {
+  border-style: solid;
+  border-width: 2px;
+  border-color: $color-primary;
+  background-color: $color-base;
+  color: $color-text;
+  padding: $spacing-4;
+  border-radius: $radius-lg;
+
+  .dropdown-header {
+    margin-bottom: $spacing-3;
+
+    .dropdown-icon {
+      color: $color-primary;
+      font-size: $text-2xl;
+    }
+
+    .dropdown-title {
+      color: $color-secondary;
+      font-size: $text-lg;
+    }
+  }
+}

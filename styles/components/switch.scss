@@ -1,0 +1,34 @@
+@use "../variables" as *;
+
+
+switch {
+  font-size: 10px;
+  padding: 0.2em;
+  background-color: $color-border;
+  border-radius: $radius-lg;
+}
+
+switch slider {
+  font-size: 10px;
+  background-color: $color-text;
+  border-radius: $radius-lg;
+}
+
+switch:checked {
+  background-color: $color-primary;
+}
+
+switch:checked slider {
+  background-color: $color-base;
+}
+
+// switch:checked {
+//   background-color: $color-primary;
+// }
+
+
+// switch slider {
+//   font-size: $text-sm;
+//   background-color: $color-border;
+//   border: none;
+// }

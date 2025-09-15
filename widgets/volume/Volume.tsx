@@ -10,7 +10,7 @@ export function Volume() {
   const speaker = Wp.defaultSpeaker;
   const volumeSignal = createBinding(speaker, "volume");
 
-  let scrollController = new Gtk.EventControllerScroll({
+  const scrollController = new Gtk.EventControllerScroll({
     flags: Gtk.EventControllerScrollFlags.BOTH_AXES,
   });
 
@@ -35,9 +35,9 @@ export function Volume() {
         tooltipText={tooltipText}
         class="icon-button"
         halign={Gtk.Align.CENTER}
-        onClicked={() => {
-          execAsync("ghostty --class=Wiremix -e wiremix");
-        }}
+        // onClicked={() => {
+        //   execAsync("ghostty --class=Wiremix -e wiremix");
+        // }}
       >
         {""}
       </button>

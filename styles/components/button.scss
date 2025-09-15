@@ -41,6 +41,7 @@
 
 .button-sm {
   @include button($spacing-2);
+  font-size: $text-sm;
 }
 
 .button.active,

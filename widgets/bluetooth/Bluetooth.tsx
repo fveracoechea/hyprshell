@@ -8,6 +8,7 @@ import {
 } from "ags";
 import { execAsync } from "ags/process";
 import { Gtk } from "ags/gtk4";
+import app from "ags/gtk4/app";
 
 export function Bluetooth() {
   const bluetooth = AstalBluetooth.get_default();
@@ -38,7 +39,8 @@ export function Bluetooth() {
             halign={Gtk.Align.CENTER}
             class="icon-button"
             onClicked={() => {
-              execAsync("blueberry");
+              app.toggle_window("bluetooth-dropdown");
+              // execAsync("blueberry");
             }}
           >
             {icon}

@@ -1,1 +1,25 @@
 @use "../../styles/variables" as *;
+
+.bluetooth-dropdown {
+
+  scrolledwindow {
+    padding: $spacing-2;
+    border-radius: $radius-lg;
+    background-color: $color-crust
+  }
+
+  .bluetooth-device {
+    label.device-name {
+      font-size: $text-md;
+
+      &.connected {
+        color: $color-primary;
+      }
+    }
+
+    label.status {
+      font-size: $text-sm;
+      color: $color-subtext;
+    }
+  }
+}

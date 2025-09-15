@@ -6,12 +6,11 @@ export function Workspaces() {
   const hyprland = Hyprland.get_default();
   const focusedWorkspace = createBinding(hyprland, "focusedWorkspace");
 
-  const workspaces = createBinding(hyprland, "workspaces").as((
-    ws: Hyprland.Workspace[],
-  ) => ws.sort((w) => w.id));
+  const workspaces = createBinding(hyprland, "workspaces")
+    .as((ws: Hyprland.Workspace[]) => ws.sort((a, b) => a.id - b.id));
 
   return (
-    <box>
+    <box class="workspaces-container">
       <With value={focusedWorkspace}>
         {(fw) => (
           <box class="workspaces">

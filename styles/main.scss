@@ -1,9 +1,11 @@
 @use "variables";
 @use "mixins";
 
+@use "components/switch";
 @use "components/button";
 @use "components/popover";
 @use "components/tooltips";
+@use "components/dropdown";
 
 // Widget-specific styles
 @use "../widgets/bar/bar";

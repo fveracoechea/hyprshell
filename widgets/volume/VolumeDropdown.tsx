@@ -43,10 +43,10 @@ export function VolumeDropdown() {
               <For each={players}>
                 {(player: Mpris.Player) => (
                   <button
+                    onClicked={() => setActivePlayer(player.identity)}
                     class={activePlayer.as((p) =>
                       p === player.identity ? "tab active" : "tab"
                     )}
-                    onClicked={() => setActivePlayer(player.identity)}
                   >
                     {player.identity}
                   </button>
@@ -64,7 +64,6 @@ export function VolumeDropdown() {
               </For>
             </stack>
           </box>
-
           <button
             class="button-md"
             marginTop={8}

@@ -26,6 +26,17 @@
   @include button();
 }
 
+.button.primary {
+  padding-top: $spacing-0_5;
+  padding-bottom: $spacing-0_5;
+  color: $color-crust;
+  background-color: $color-primary;
+
+  &:hover {
+    background-color: rgba($color-primary, $opacity-75);
+  }
+}
+
 .tray-button {
   @include button($spacing-2);
   min-width: $spacing-6;

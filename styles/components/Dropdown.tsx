@@ -1,8 +1,7 @@
-import { type Accessor, createState, onCleanup, type Setter } from "ags";
+import { createState } from "ags";
 import { Astal, Gdk, Gtk } from "ags/gtk4";
 import Graphene from "gi://Graphene";
 import app from "ags/gtk4/app";
-import Adw from "gi://Adw";
 
 type DropdownContentProps = {
   name: string;

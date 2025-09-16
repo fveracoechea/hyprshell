@@ -2,6 +2,11 @@
 
 .bluetooth-dropdown {
 
+  label.disabled {
+    font-size: $text-md;
+    color: $color-subtext;
+  }
+
   scrolledwindow {
     padding: $spacing-2;
     border-radius: $radius-lg;

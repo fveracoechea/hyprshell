@@ -30,7 +30,7 @@
       bluetooth
       network
       wireplumber
-      # notifd
+      notifd
     ];
 
     extraBuildInputs = with pkgs; [

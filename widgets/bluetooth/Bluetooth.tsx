@@ -4,13 +4,17 @@ import {
   createBinding,
   createComputed,
   createConnection,
+  createState,
+  State,
   With,
 } from "ags";
 import { execAsync } from "ags/process";
 import { Gtk } from "ags/gtk4";
 import app from "ags/gtk4/app";
+import { BluetoothDropdown } from "./BluetoothDropdown";
 
 export function Bluetooth() {
+  const [popover, setPopover] = createState(null) as State<Gtk.Popover | null>;
   const bluetooth = AstalBluetooth.get_default();
 
   const devicesSignal = createBinding(bluetooth, "devices");
@@ -32,21 +36,18 @@ export function Bluetooth() {
 
   return (
     <box>
-      <With value={iconSignal}>
-        {(icon) => (
-          <button
-            tooltipText={tooltip}
-            halign={Gtk.Align.CENTER}
-            class="icon-button"
-            onClicked={() => {
-              app.toggle_window("bluetooth-dropdown");
-              // execAsync("blueberry");
-            }}
-          >
-            {icon}
-          </button>
-        )}
-      </With>
+      <menubutton
+        class="icon-button"
+        tooltipText={tooltip}
+        halign={Gtk.Align.CENTER}
+      >
+        <With value={iconSignal}>
+          {(icon) => <label label={icon} />}
+        </With>
+        <popover $={(self) => setPopover(self)} class="dropdown">
+          <BluetoothDropdown popover={popover} />
+        </popover>
+      </menubutton>
     </box>
   );
 }

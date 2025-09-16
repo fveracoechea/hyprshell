@@ -1,4 +1,5 @@
 import { Gtk } from "ags/gtk4";
+import app from "ags/gtk4/app";
 import { execAsync } from "ags/process";
 import AstalWp from "gi://AstalWp";
 import { createBinding, createComputed } from "ags";
@@ -35,9 +36,10 @@ export function Volume() {
         tooltipText={tooltipText}
         class="icon-button"
         halign={Gtk.Align.CENTER}
-        // onClicked={() => {
-        //   execAsync("ghostty --class=Wiremix -e wiremix");
-        // }}
+        onClicked={() => {
+          app.toggle_window("volume-dropdown");
+          // execAsync("ghostty --class=Wiremix -e wiremix");
+        }}
       >
         {""}
       </button>

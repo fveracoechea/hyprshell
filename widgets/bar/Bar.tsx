@@ -11,10 +11,10 @@ import { Notifications } from "../notifications/Notifications";
 import { Bluetooth } from "../bluetooth/Bluetooth";
 import { CPU } from "../cpu/CPU";
 
-type BarProps = { monitor: Gdk.Monitor };
+type BarProps = { gdkmonitor: Gdk.Monitor };
 
 export default function Bar(props: BarProps) {
-  const { monitor } = props;
+  const { gdkmonitor } = props;
 
   const { TOP } = Astal.WindowAnchor;
   const username = exec("whoami").trim();
@@ -25,7 +25,7 @@ export default function Bar(props: BarProps) {
       visible
       name="bar"
       class="shell-bar"
-      monitor={monitor}
+      gdkmonitor={gdkmonitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       layer={Astal.Layer.TOP}
       keymode={Astal.Keymode.NONE}

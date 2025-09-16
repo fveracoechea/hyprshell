@@ -27,3 +27,13 @@
   line-height: 1;
   -gtk-icon-size: variables.$icon-size-default;
 }
+
+.title {
+  font-size: variables.$text-lg;
+  color: variables.$color-primary;
+}
+
+.subtitle {
+  font-size: variables.$text-sm;
+  color: variables.$color-subtext;
+}

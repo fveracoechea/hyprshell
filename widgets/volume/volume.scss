@@ -1,1 +1,51 @@
 @use "../../styles/variables" as *;
+
+box.tabs {
+  button.tab {
+    transition: color 250ms ease, background-color 250ms ease;
+    border-top-left-radius: $radius-lg;
+    border-top-right-radius: $radius-lg;
+    padding: $spacing-1_5 $spacing-4;
+    background-color: $color-crust;
+    margin-bottom: -2px;
+    background-color: $color-base;
+
+    &.active {
+      color: $color-primary;
+      font-weight: 500;
+      background-color: $color-crust;
+    }
+  }
+
+  stack {
+    padding: $spacing-3;
+    background-color: $color-crust;
+    border-top-left-radius: none;
+    border-top-right-radius: $radius-lg;
+    border-bottom-right-radius: $radius-lg;
+    border-bottom-left-radius: $radius-lg;
+
+    &.rounded-top-left {
+      border-top-left-radius: $radius-lg;
+    }
+  }
+}
+
+.media-player {
+
+  .title {
+    font-weight: 500;
+    font-size: $text-lg;
+    color: $color-text;
+  }
+
+  .artist {
+    font-size: $text-md;
+    color: $color-primary;
+  }
+
+  .album {
+    font-size: $text-sm;
+    color: $color-subtext;
+  }
+}

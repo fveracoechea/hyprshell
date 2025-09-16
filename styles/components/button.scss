@@ -26,6 +26,14 @@
   @include button();
 }
 
+.button-md {
+  @include button($spacing-3, $spacing-1);
+
+  label.icon {
+    font-size: $text-xl;
+  }
+}
+
 .button.primary {
   padding-top: $spacing-0_5;
   padding-bottom: $spacing-0_5;
@@ -49,6 +57,12 @@
   font-size: $text-xl;
 }
 
+.icon-button-md {
+  @include button($spacing-2);
+  padding-right: $spacing-2_5;
+  min-width: $spacing-6;
+  font-size: $text-2xl;
+}
 
 .button-sm {
   @include button($spacing-2);

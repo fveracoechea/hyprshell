@@ -9,9 +9,7 @@ import { Dropdown } from "../../styles/components/Dropdown";
 const width = 400;
 const height = 250;
 
-export function BluetoothDropdown(
-  { popover }: { popover: Accessor<Gtk.Popover | null> },
-) {
+export function BluetoothDropdown() {
   const bluetooth = AstalBluetooth.get_default();
   const devicesSignal = createBinding(bluetooth, "devices");
   const activeSignal = createBinding(bluetooth, "is_powered");
@@ -36,109 +34,107 @@ export function BluetoothDropdown(
         </box>
       }
     >
-      <box
-        class="bluetooth-dropdown"
-        hexpand
-        spacing={8}
-        valign={Gtk.Align.START}
-        halign={Gtk.Align.START}
-        orientation={Gtk.Orientation.VERTICAL}
-      >
-        <scrolledwindow widthRequest={width} heightRequest={height}>
-          <With value={activeSignal}>
-            {(active: boolean) =>
-              active
-                ? (
-                  <box
-                    vexpand
-                    spacing={8}
-                    orientation={Gtk.Orientation.VERTICAL}
-                  >
-                    <For each={devicesSignal}>
-                      {(device: AstalBluetooth.Device) => (
-                        <box spacing={16} hexpand class="bluetooth-device">
-                          <image
-                            pixelSize={24}
-                            iconName={device.icon || ""}
-                          />
-                          <box orientation={Gtk.Orientation.VERTICAL} hexpand>
-                            <label
-                              class={device.connected
-                                ? "device-name connected"
-                                : "device-name"}
-                              label={device.name}
-                              xalign={0}
+      {(popover) => (
+        <box
+          class="bluetooth-dropdown"
+          hexpand
+          spacing={8}
+          valign={Gtk.Align.START}
+          halign={Gtk.Align.START}
+          orientation={Gtk.Orientation.VERTICAL}
+        >
+          <scrolledwindow widthRequest={width} heightRequest={height}>
+            <With value={activeSignal}>
+              {(active: boolean) =>
+                active
+                  ? (
+                    <box
+                      vexpand
+                      spacing={8}
+                      orientation={Gtk.Orientation.VERTICAL}
+                    >
+                      <For each={devicesSignal}>
+                        {(device: AstalBluetooth.Device) => (
+                          <box spacing={16} hexpand class="bluetooth-device">
+                            <image
+                              pixelSize={24}
+                              iconName={device.icon || ""}
                             />
-                            <label
-                              xalign={0}
-                              class="status"
-                              label={device.connected
-                                ? "Connected"
-                                : device.paired
-                                ? "paired"
-                                : ""}
-                            />
-                          </box>
+                            <box orientation={Gtk.Orientation.VERTICAL} hexpand>
+                              <label
+                                class={device.connected
+                                  ? "device-name connected"
+                                  : "device-name"}
+                                label={device.name}
+                                xalign={0}
+                              />
+                              <label
+                                xalign={0}
+                                class="status"
+                                label={device.connected
+                                  ? "Connected"
+                                  : device.paired
+                                  ? "paired"
+                                  : ""}
+                              />
+                            </box>
 
-                          {!device.connected && device.paired &&
-                            (
+                            {!device.connected && device.paired &&
+                              (
+                                <button
+                                  class="icon-button"
+                                  tooltipText="Coonnect Device"
+                                  valign={Gtk.Align.START}
+                                  halign={Gtk.Align.END}
+                                  onClicked={() => device.connect_device()}
+                                >
+                                  {"󱘖"}
+                                </button>
+                              )}
+
+                            {device.connected && device.paired && (
                               <button
                                 class="icon-button"
-                                tooltipText="Coonnect Device"
+                                tooltipText="Disconnect Device"
                                 valign={Gtk.Align.START}
                                 halign={Gtk.Align.END}
-                                onClicked={() => device.connect_device()}
+                                onClicked={() => device.disconnect_device()}
                               >
-                                {"󱘖"}
+                                {"󰂲"}
                               </button>
                             )}
-
-                          {device.connected && device.paired && (
-                            <button
-                              class="icon-button"
-                              tooltipText="Disconnect Device"
-                              valign={Gtk.Align.START}
-                              halign={Gtk.Align.END}
-                              onClicked={() => device.disconnect_device()}
-                            >
-                              {"󰂲"}
-                            </button>
-                          )}
-                        </box>
-                      )}
-                    </For>
-                  </box>
-                )
-                : (
-                  <label
-                    class="disabled"
-                    label="Bluetooth is disabled"
-                    halign={Gtk.Align.CENTER}
-                    valign={Gtk.Align.CENTER}
-                  />
-                )}
-          </With>
-        </scrolledwindow>
-        <With value={popover}>
-          {(pop) => (
-            <button
-              class="button"
-              marginTop={8}
-              valign={Gtk.Align.CENTER}
-              halign={Gtk.Align.END}
-              onClicked={() => {
-                if (pop) pop.popdown();
-                execAsync("blueberry");
-              }}
-            >
-              <box spacing={10}>
-                <label label="󰒓" />
-                <label label="Settings" />
-              </box>
-            </button>
-          )}
-        </With>
-      </box>
+                          </box>
+                        )}
+                      </For>
+                    </box>
+                  )
+                  : (
+                    <label
+                      class="disabled"
+                      label="Bluetooth is disabled"
+                      halign={Gtk.Align.CENTER}
+                      valign={Gtk.Align.CENTER}
+                    />
+                  )}
+            </With>
+          </scrolledwindow>
+          <button
+            class="button-md"
+            marginTop={8}
+            valign={Gtk.Align.CENTER}
+            halign={Gtk.Align.END}
+            onClicked={() => {
+              popover.popdown();
+              execAsync("blueberry");
+            }}
+          >
+            <box spacing={10}>
+              <label label="󰒓" class="icon" />
+              <label label="Settings" />
+            </box>
+          </button>
+        </box>
+      )}
     </Dropdown>
   );
 }

@@ -1,9 +1,12 @@
 @use "../variables" as *;
 
 tooltip {
+  border-style: solid;
+  border-width: 2px;
+  border-color: $color-border;
   background-color: $color-base;
   color: $color-text;
-  padding: $spacing-2 $spacing-4;
+  padding: $spacing-2;
   border-radius: $radius-lg;
-  font-size: $text-md;
+  font-size: $text-sm;
 }

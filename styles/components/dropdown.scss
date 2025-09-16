@@ -1,10 +1,17 @@
 @use "../variables" as *;
 
-.dropdown {
+popover.dropdown {
 
-  contents {
-    border-color: $color-primary;
+  .dropdown-contents {
     padding: $spacing-4;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: $radius-lg;
+    border-color: $color-primary;
+    margin-top: $spacing-2;
+    background-color: $color-base;
+    color: $color-text;
+    font-size: $text-md;
   }
 
   .dropdown-header {

@@ -1,7 +1,7 @@
 @use "../variables" as *;
 
 
-popover contents {
+popover:not(.dropdown) contents {
   border-style: solid;
   border-width: 2px;
   border-color: $color-border;

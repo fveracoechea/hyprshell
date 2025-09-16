@@ -2,20 +2,22 @@ import { Gtk } from "ags/gtk4";
 import app from "ags/gtk4/app";
 import { execAsync } from "ags/process";
 import AstalWp from "gi://AstalWp";
-import { createBinding, createComputed } from "ags";
+import { createBinding, createComputed, State } from "ags";
+import { VolumeDropdown } from "./VolumeDropdown";
 
 const step = 5;
 
 export function Volume() {
   const Wp = AstalWp.get_default();
   const speaker = Wp.defaultSpeaker;
+
   const volumeSignal = createBinding(speaker, "volume");
 
   const scrollController = new Gtk.EventControllerScroll({
     flags: Gtk.EventControllerScrollFlags.BOTH_AXES,
   });
 
-  function buttonInit(self: Gtk.Button) {
+  function buttonInit(self: Gtk.MenuButton) {
     self.add_controller(scrollController);
     scrollController.connect("scroll", (c, dx, dy) => {
       const multp = dy < 0 ? 1 : -1;
@@ -31,18 +33,15 @@ export function Volume() {
 
   return (
     <box>
-      <button
+      <menubutton
         $={buttonInit}
         tooltipText={tooltipText}
         class="icon-button"
         halign={Gtk.Align.CENTER}
-        onClicked={() => {
-          app.toggle_window("volume-dropdown");
-          // execAsync("ghostty --class=Wiremix -e wiremix");
-        }}
       >
         {""}
-      </button>
+        <VolumeDropdown />
+      </menubutton>
     </box>
   );
 }

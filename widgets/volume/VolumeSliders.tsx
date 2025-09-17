@@ -1,32 +1,59 @@
 import { Gtk } from "ags/gtk4";
 import AstalWp from "gi://AstalWp";
-import { createBinding } from "gnim";
+import { createBinding, createComputed, createConnection } from "gnim";
+import { logObject } from "../../utils/log";
+import Pango from "gi://Pango";
 
-function logObject(o: any) {
-  if (typeof o !== "object" || o === null) console.log("Not An Object");
-  for (const v in o) {
-    if (o[v]) {
-      console.log(v, typeof o[v]);
-    }
-  }
-}
+type SliderProps = { device: AstalWp.Device; icon: string };
 
-const Wp = AstalWp.get_default();
-const speaker = Wp.audio.defaultSpeaker;
-export function VolumeSliders() {
-  const mic = Wp.audio.default_microphone;
-
-  logObject(speaker);
-
+function Slider(props: SliderProps) {
+  const { icon, device } = props;
+  const volume = createBinding(device, "volume");
+  const speakerName = createBinding(device, "description").as((d) =>
+    d ?? "Unknown Speaker"
+  );
   return (
-    <box spacing={10} orientation={Gtk.Orientation.VERTICAL}>
-      <box>
+    <box
+      hexpand
+      class="sliders"
+      spacing={4}
+      orientation={Gtk.Orientation.VERTICAL}
+    >
+      <label
+        class="device-name"
+        halign={Gtk.Align.START}
+        label={speakerName}
+        hexpand
+        maxWidthChars={40}
+        ellipsize={Pango.EllipsizeMode.END}
+      />
+      <box spacing={18} hexpand>
+        <label class="icon" label={icon} />
         <slider
           hexpand
-          value={createBinding(speaker, "volume")}
-          onChangeValue={(self) => speaker.set_volume(self.value)}
+          step={5}
+          value={volume}
+          class="media-slider"
+          valign={Gtk.Align.CENTER}
+          onChangeValue={(self) => device.set_volume(self.value)}
         />
+        <label label={volume.as((v) => `${(v * 100).toFixed(0)}%`)} />
       </box>
+    </box>
+  );
+}
+
+export function VolumeSliders() {
+  const Wp = AstalWp.get_default();
+  const speaker = Wp.audio.defaultSpeaker;
+  const mic = Wp.audio.default_microphone;
+  return (
+    <box
+      hexpand
+      orientation={Gtk.Orientation.VERTICAL}
+    >
+      <Slider device={speaker} icon="" />
+      <Slider device={mic} icon="" />
     </box>
   );
 }

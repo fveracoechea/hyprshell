@@ -40,7 +40,7 @@ export function CPU() {
           execAsync("ghostty --class=Btop -e btop");
         }}
       >
-        {""}
+        {""}
       </button>
     </box>
   );

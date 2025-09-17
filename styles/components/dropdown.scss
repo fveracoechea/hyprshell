@@ -7,7 +7,7 @@ popover.dropdown {
     border-width: 2px;
     border-style: solid;
     border-radius: $radius-lg;
-    border-color: $color-secondary;
+    border-color: $color-border;
     background-color: $color-base;
     color: $color-text;
     font-size: $text-md;
@@ -18,11 +18,11 @@ popover.dropdown {
 
     .dropdown-icon {
       color: $color-primary;
-      font-size: $text-2xl;
+      font-size: $text-xl;
     }
 
     .dropdown-title {
-      color: $color-secondary;
+      color: $color-primary;
       font-size: $text-lg;
     }
   }

@@ -1,7 +1,7 @@
 import { Accessor, createBinding, createComputed, createState, For } from "ags";
 import { Gtk } from "ags/gtk4";
 
-import { Dropdown } from "../../styles/components/Dropdown";
+import { Dropdown, DropdownHeader } from "../../styles/components/Dropdown";
 
 import Mpris from "gi://AstalMpris";
 import { MediaPlayer } from "./MediaPlayer";
@@ -9,7 +9,6 @@ import { execAsync } from "ags/process";
 import { VolumeSliders } from "./VolumeSliders";
 
 const width = 420;
-const height = 250;
 
 function MediaTabs() {
   const Media = Mpris.get_default();
@@ -67,28 +66,29 @@ export function VolumeDropdown() {
   return (
     <Dropdown
       icon=""
-      name="Media"
+      name="Volume"
       widthRequest={width}
-    >
-      {(popover) => (
-        <box hexpand orientation={Gtk.Orientation.VERTICAL} spacing={10}>
-          <MediaTabs />
-          <VolumeSliders />
+      actions={(popover) => (
+        <box spacing={8}>
           <button
-            class="button-md"
+            class="icon-button"
+            tooltipText="Open Wiremix"
             marginTop={8}
             valign={Gtk.Align.CENTER}
-            halign={Gtk.Align.END}
             onClicked={() => {
               popover.popdown();
               execAsync("ghostty --class=Wiremix -e wiremix");
             }}
           >
-            <box spacing={10}>
-              <label label="󰒓" class="icon" />
-              <label label="Settings" />
-            </box>
+            <label label="󰒓" class="icon" />
           </button>
+        </box>
+      )}
+    >
+      {() => (
+        <box hexpand orientation={Gtk.Orientation.VERTICAL} spacing={10}>
+          <VolumeSliders />
+          <MediaTabs />
         </box>
       )}
     </Dropdown>

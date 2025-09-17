@@ -19,8 +19,19 @@ export function BluetoothDropdown() {
       name="Bluetooth"
       heightRequest={height}
       widthRequest={width}
-      actions={
+      actions={(popover) => (
         <box spacing={8}>
+          <button
+            class="icon-button"
+            tooltipText="Open Bluetooth Settings"
+            valign={Gtk.Align.CENTER}
+            onClicked={() => {
+              popover.popdown();
+              execAsync("blueberry");
+            }}
+          >
+            <label label="󰒓" class="icon" />
+          </button>
           <switch
             active={activeSignal}
             heightRequest={4}
@@ -32,7 +43,7 @@ export function BluetoothDropdown() {
             }}
           />
         </box>
-      }
+      )}
     >
       {(popover) => (
         <box
@@ -118,21 +129,6 @@ export function BluetoothDropdown() {
                   )}
             </With>
           </scrolledwindow>
-          <button
-            class="button-md"
-            marginTop={8}
-            valign={Gtk.Align.CENTER}
-            halign={Gtk.Align.END}
-            onClicked={() => {
-              popover.popdown();
-              execAsync("blueberry");
-            }}
-          >
-            <box spacing={10}>
-              <label label="󰒓" class="icon" />
-              <label label="Settings" />
-            </box>
-          </button>
         </box>
       )}
     </Dropdown>

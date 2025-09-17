@@ -53,80 +53,99 @@ export function MediaPlayer({ player }: { player: Mpris.Player }) {
     <box $type="named" name={playerName} class="media-player">
       <With value={canDisplay}>
         {(display) =>
-          !display ? null : (
-            <box
-              spacing={4}
-              marginTop={2}
-              orientation={Gtk.Orientation.VERTICAL}
-            >
-              <label
-                class="album"
+          !display
+            ? (
+              <box
+                hexpand
+                class="placeholder"
                 halign={Gtk.Align.CENTER}
-                label={album}
-              />
-
-              <label
-                class="title"
-                label={title}
-                halign={Gtk.Align.CENTER}
-                ellipsize={Pango.EllipsizeMode.END}
-              />
-
-              <label
-                class="artist"
-                label={artist}
-                halign={Gtk.Align.CENTER}
-                ellipsize={Pango.EllipsizeMode.END}
-              />
-
-              <box hexpand spacing={8} marginTop={4} halign={Gtk.Align.CENTER}>
-                <button
-                  class="icon-button-md"
-                  tooltipText="Previous"
-                  onClicked={() => player.previous()}
-                  visible={createBinding(player, "can_go_previous")}
-                >
-                  <label label="󰒮" />
-                </button>
-                <button
-                  class="icon-button-md"
-                  tooltipText={shuffleStatusText}
-                  onClicked={() => player.shuffle()}
-                  visible={shuffleStatusText.as((t) => t !== "Unsupported")}
-                >
-                  <label label={shuffleIcon} />
-                </button>
-                <button
-                  class="icon-button-md"
-                  tooltipText="Play/Pause"
-                  valign={Gtk.Align.CENTER}
-                  onClicked={() => player.play_pause()}
-                >
-                  <label
-                    label={playbackStatus.as((status) =>
-                      status === Mpris.PlaybackStatus.PLAYING ? "" : ""
-                    )}
-                  />
-                </button>
-                <button
-                  class="icon-button-md"
-                  tooltipText={loopStatusText}
-                  onClicked={() => player.loop()}
-                  visible={loopStatusText.as((t) => t !== "Unsupported")}
-                >
-                  <label label={loopIcon} />
-                </button>
-                <button
-                  class="icon-button-md"
-                  tooltipText="Next"
-                  onClicked={() => player.next()}
-                  visible={createBinding(player, "can_go_next")}
-                >
-                  <label label="󰒭" />
-                </button>
+                valign={Gtk.Align.CENTER}
+                orientation={Gtk.Orientation.VERTICAL}
+                spacing={4}
+              >
+                <label label="󰝛" class="icon" />
+                <label label="No media playing" />
               </box>
-            </box>
-          )}
+            )
+            : (
+              <box
+                spacing={4}
+                marginTop={2}
+                orientation={Gtk.Orientation.VERTICAL}
+              >
+                <label
+                  class="album"
+                  halign={Gtk.Align.CENTER}
+                  label={album}
+                />
+
+                <label
+                  class="title"
+                  label={title}
+                  halign={Gtk.Align.CENTER}
+                  ellipsize={Pango.EllipsizeMode.END}
+                />
+
+                <label
+                  class="artist"
+                  label={artist}
+                  halign={Gtk.Align.CENTER}
+                  ellipsize={Pango.EllipsizeMode.END}
+                />
+
+                <box
+                  hexpand
+                  spacing={8}
+                  marginTop={4}
+                  halign={Gtk.Align.CENTER}
+                >
+                  <button
+                    class="icon-button-md"
+                    tooltipText="Previous"
+                    onClicked={() => player.previous()}
+                    visible={createBinding(player, "can_go_previous")}
+                  >
+                    <label label="󰒮" />
+                  </button>
+                  <button
+                    class="icon-button-md"
+                    tooltipText={shuffleStatusText}
+                    onClicked={() => player.shuffle()}
+                    visible={shuffleStatusText.as((t) => t !== "Unsupported")}
+                  >
+                    <label label={shuffleIcon} />
+                  </button>
+                  <button
+                    class="icon-button-md"
+                    tooltipText="Play/Pause"
+                    valign={Gtk.Align.CENTER}
+                    onClicked={() => player.play_pause()}
+                  >
+                    <label
+                      label={playbackStatus.as((status) =>
+                        status === Mpris.PlaybackStatus.PLAYING ? "" : ""
+                      )}
+                    />
+                  </button>
+                  <button
+                    class="icon-button-md"
+                    tooltipText={loopStatusText}
+                    onClicked={() => player.loop()}
+                    visible={loopStatusText.as((t) => t !== "Unsupported")}
+                  >
+                    <label label={loopIcon} />
+                  </button>
+                  <button
+                    class="icon-button-md"
+                    tooltipText="Next"
+                    onClicked={() => player.next()}
+                    visible={createBinding(player, "can_go_next")}
+                  >
+                    <label label="󰒭" />
+                  </button>
+                </box>
+              </box>
+            )}
       </With>
     </box>
   );

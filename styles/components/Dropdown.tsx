@@ -3,13 +3,32 @@ import { Astal, Gdk, Gtk } from "ags/gtk4";
 import Graphene from "gi://Graphene";
 import app from "ags/gtk4/app";
 
+type DropdownHeaderProps = {
+  name: string;
+  icon: string;
+  children?: JSX.Element;
+};
+
+export function DropdownHeader(props: DropdownHeaderProps) {
+  const { name, icon, children } = props;
+  return (
+    <box spacing={8} class="dropdown-header" hexpand>
+      <box spacing={12} hexpand>
+        <label class="dropdown-icon" label={icon} />
+        <label class="dropdown-title" label={name} />
+      </box>
+      {children}
+    </box>
+  );
+}
+
 type DropdownContentProps = {
   name: string;
   icon: string;
+  actions?: (popover: Gtk.Popover) => JSX.Element;
   children: (popover: Gtk.Popover) => JSX.Element;
   widthRequest?: number;
   heightRequest?: number;
-  actions?: JSX.Element;
 };
 
 export function Dropdown(props: DropdownContentProps) {
@@ -34,15 +53,14 @@ export function Dropdown(props: DropdownContentProps) {
         class="dropdown-contents"
       >
         <box orientation={Gtk.Orientation.VERTICAL}>
-          <box spacing={8} class="dropdown-header" hexpand>
-            <box spacing={12} hexpand>
-              <label class="dropdown-icon" label={icon} />
-              <label class="dropdown-title" label={name} />
-            </box>
-
-            {actions}
-          </box>
-
+          <DropdownHeader icon={icon} name={name}>
+            <With value={popover}>
+              {(value) => {
+                if (value && actions) return actions(value);
+                return <box />;
+              }}
+            </With>
+          </DropdownHeader>
           <box
             widthRequest={widthRequest}
             heightRequest={heightRequest}

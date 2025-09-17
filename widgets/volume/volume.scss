@@ -32,18 +32,21 @@ box.tabs {
 }
 
 
-.media-placeholder {
-  padding: $spacing-4;
-  background-color: $color-crust;
-  border-radius: $radius-lg;
-
-  label {
-    font-size: $text-sm;
-    color: $color-subtext;
-  }
-}
 
 .media-player {
+
+  .placeholder {
+    padding: $spacing-4;
+
+    label {
+      font-size: $text-sm;
+      color: $color-subtext;
+    }
+
+    label.icon {
+      font-size: $text-2xl;
+    }
+  }
 
   .title {
     font-weight: 500;
@@ -53,11 +56,59 @@ box.tabs {
 
   .artist {
     font-size: $text-md;
-    color: $color-primary;
+    color: $color-secondary;
   }
 
   .album {
     font-size: $text-sm;
     color: $color-subtext;
+  }
+}
+
+.sliders {
+  padding: $spacing-3 $spacing-2;
+
+  label.device-name {
+    color: $color-text;
+    font-size: $text-md;
+    font-weight: 500;
+  }
+
+  label.icon {
+    transition: color 250ms ease;
+    color: $color-text;
+    font-size: $text-xl;
+  }
+
+
+
+  scale.media-slider {
+    slider {
+      transition: background-color 250ms ease;
+      min-width: $spacing-4;
+      min-height: $spacing-4;
+      border-radius: $radius-full;
+      background-color: $color-subtext;
+      margin: -$spacing-1
+    }
+
+    highlight {
+      background-color: $color-primary;
+    }
+
+    trough {
+      background-color: $color-border;
+      border-radius: $radius-full;
+    }
+  }
+
+  &:hover {
+    scale.media-slider slider {
+      background-color: $color-primary;
+    }
+
+    label.icon {
+      color: $color-primary;
+    }
   }
 }

@@ -20,11 +20,23 @@ export function BluetoothDropdown() {
       heightRequest={height}
       widthRequest={width}
       actions={(popover) => (
-        <box spacing={8}>
+        <box spacing={8} valign={Gtk.Align.START} halign={Gtk.Align.END}>
+          <box valign={Gtk.Align.START} halign={Gtk.Align.END}>
+            <switch
+              active={activeSignal}
+              heightRequest={4}
+              valign={Gtk.Align.CENTER}
+              $={(self) => {
+                self.connect("notify::active", () => {
+                  bluetooth.adapter?.set_powered(self.active);
+                });
+              }}
+            />
+          </box>
           <button
             class="icon-button"
             tooltipText="Open Bluetooth Settings"
-            valign={Gtk.Align.CENTER}
+            valign={Gtk.Align.START}
             onClicked={() => {
               popover.popdown();
               execAsync("blueberry");
@@ -32,16 +44,6 @@ export function BluetoothDropdown() {
           >
             <label label="󰒓" class="icon" />
           </button>
-          <switch
-            active={activeSignal}
-            heightRequest={4}
-            valign={Gtk.Align.CENTER}
-            $={(self) => {
-              self.connect("notify::active", () => {
-                bluetooth.adapter?.set_powered(self.active);
-              });
-            }}
-          />
         </box>
       )}
     >

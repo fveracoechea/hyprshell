@@ -1,11 +1,6 @@
 @use "../../styles/variables" as v;
 
 
-.time-label,
-.date-label {
-  color: v.$color-primary;
-}
-
 calendar {
   grid label {
     border-radius: v.$radius-lg;

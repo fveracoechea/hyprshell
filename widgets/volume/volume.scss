@@ -50,12 +50,12 @@ box.tabs {
 
   .title {
     font-weight: 500;
-    font-size: $text-lg;
+    font-size: $text-md;
     color: $color-text;
   }
 
   .artist {
-    font-size: $text-md;
+    font-size: $text-sm;
     color: $color-secondary;
   }
 
@@ -89,7 +89,8 @@ box.tabs {
       min-height: $spacing-4;
       border-radius: $radius-full;
       background-color: $color-subtext;
-      margin: -$spacing-1
+      margin: -$spacing-1;
+      border: 1px solid $color-crust;
     }
 
     highlight {
@@ -104,11 +105,11 @@ box.tabs {
 
   &:hover {
     scale.media-slider slider {
-      background-color: $color-primary;
+      background-color: $color-text;
     }
 
     label.icon {
-      color: $color-primary;
+      color: $color-secondary;
     }
   }
 }

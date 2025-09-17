@@ -74,7 +74,7 @@ export function VolumeDropdown() {
             class="icon-button"
             tooltipText="Open Wiremix"
             marginTop={8}
-            valign={Gtk.Align.CENTER}
+            valign={Gtk.Align.START}
             onClicked={() => {
               popover.popdown();
               execAsync("ghostty --class=Wiremix -e wiremix");

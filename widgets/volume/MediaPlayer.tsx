@@ -82,6 +82,7 @@ export function MediaPlayer({ player }: { player: Mpris.Player }) {
                 <label
                   class="title"
                   label={title}
+                  maxWidthChars={40}
                   halign={Gtk.Align.CENTER}
                   ellipsize={Pango.EllipsizeMode.END}
                 />

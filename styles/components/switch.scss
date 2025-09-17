@@ -2,33 +2,26 @@
 
 
 switch {
-  font-size: 10px;
-  padding: 0.2em;
+  transition: background-color 250ms ease;
   background-color: $color-border;
-  border-radius: $radius-lg;
+  border-radius: $radius-full;
+
+  slider {
+    transition: background-color 250ms ease;
+    min-width: $spacing-2;
+    min-height: $spacing-2;
+    border-radius: $radius-full;
+    border: 1px solid $color-crust;
+    background-color: $color-subtext;
+  }
+
+  &:hover {
+    slider {
+      background-color: $color-text;
+    }
+  }
+
+  &:checked {
+    background-color: $color-primary;
+  }
 }
-
-switch slider {
-  font-size: 10px;
-  background-color: $color-text;
-  border-radius: $radius-lg;
-}
-
-switch:checked {
-  background-color: $color-primary;
-}
-
-switch:checked slider {
-  background-color: $color-base;
-}
-
-// switch:checked {
-//   background-color: $color-primary;
-// }
-
-
-// switch slider {
-//   font-size: $text-sm;
-//   background-color: $color-border;
-//   border: none;
-// }

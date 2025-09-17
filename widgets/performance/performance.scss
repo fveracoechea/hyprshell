@@ -1,0 +1,37 @@
+@use "../../styles/variables" as *;
+
+.stats {
+
+  label.title {
+    font-size: $text-sm;
+    color: $color-text;
+  }
+
+  label.label {
+    font-size: $text-md;
+    color: $color-secondary;
+  }
+
+  label.icon {
+    font-size: $text-lg;
+    color: $color-subtext;
+  }
+
+  levelbar {
+    trough {
+      min-height: $spacing-2;
+    }
+
+    block {
+      border-radius: $radius-full;
+
+      &.filled {
+        background-color: $color-primary;
+      }
+
+      &.empty {
+        background-color: $color-border;
+      }
+    }
+  }
+}

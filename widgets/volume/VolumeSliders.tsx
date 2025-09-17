@@ -37,7 +37,10 @@ function Slider(props: SliderProps) {
           valign={Gtk.Align.CENTER}
           onChangeValue={(self) => device.set_volume(self.value)}
         />
-        <label label={volume.as((v) => `${(v * 100).toFixed(0)}%`)} />
+        <label
+          class="label"
+          label={volume.as((v) => `${(v * 100).toFixed(0)}%`)}
+        />
       </box>
     </box>
   );

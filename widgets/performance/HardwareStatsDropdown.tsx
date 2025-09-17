@@ -4,6 +4,7 @@ import { createPoll } from "ags/time";
 import { Accessor, createComputed } from "ags";
 import { getCpuTempInfo, readCpuTemp } from "./cpu-temp";
 import { getCpuStats, initialCpuStats } from "./cpu-usage";
+import { formatBytes, getStorageUsage } from "./storage-usage";
 import { Dropdown } from "../../styles/components/Dropdown";
 
 type StatProps = {
@@ -15,7 +16,7 @@ type StatProps = {
 };
 
 function Stat(props: StatProps) {
-  const { value, label = "", title, icon, widthRequest = 350 } = props;
+  const { value, label = "", title, icon, widthRequest = 400 } = props;
   return (
     <box
       hexpand
@@ -68,6 +69,12 @@ export function HardwareStatsDropdown() {
     `free | awk '/^Mem/ {printf("%.2f\\n", ($3/$2) * 100)}'`,
   ]).as(Number);
 
+  const storage = createPoll(
+    { used: 0, total: 0, percentage: 0 },
+    interval,
+    getStorageUsage,
+  );
+
   return (
     <Dropdown icon="󰓅" name="Performance">
       {() => (
@@ -99,6 +106,18 @@ export function HardwareStatsDropdown() {
             title="Memory"
             value={memory((v) => v / 100)}
             label={memory((v) => `${v.toFixed(0)}%`)}
+          />
+          <Stat
+            icon="󰋊"
+            title="Storage"
+            value={storage((s) => s.percentage / 100)}
+            label={createComputed(
+              [storage],
+              (s) =>
+                `${s.percentage}% (${formatBytes(s.used)}/${
+                  formatBytes(s.total)
+                })`,
+            )}
           />
         </box>
       )}

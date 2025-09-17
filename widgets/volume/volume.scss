@@ -1,4 +1,5 @@
 @use "../../styles/variables" as *;
+@use "sass:color";
 
 box.tabs {
   button.tab {
@@ -80,6 +81,10 @@ box.tabs {
     font-size: $text-xl;
   }
 
+  label.label {
+    color: $color-secondary;
+  }
+
 
 
   scale.media-slider {
@@ -94,6 +99,7 @@ box.tabs {
     }
 
     highlight {
+      transition: background-color 250ms ease;
       background-color: $color-primary;
     }
 
@@ -101,15 +107,17 @@ box.tabs {
       background-color: $color-border;
       border-radius: $radius-full;
     }
-  }
 
-  &:hover {
-    scale.media-slider slider {
-      background-color: $color-text;
+    &:hover {
+      highlight {
+        background-color: $color-secondary;
+      }
+
+      slider {
+        background-color: $color-secondary;
+      }
     }
 
-    label.icon {
-      color: $color-secondary;
-    }
   }
+
 }

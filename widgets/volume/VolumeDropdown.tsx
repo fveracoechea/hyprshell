@@ -3,8 +3,6 @@ import { Gtk } from "ags/gtk4";
 
 import { Dropdown } from "../../styles/components/Dropdown";
 
-import Wp from "gi://AstalWp";
-import Pango from "gi://Pango";
 import Mpris from "gi://AstalMpris";
 import { MediaPlayer } from "./MediaPlayer";
 import { execAsync } from "ags/process";
@@ -15,20 +13,28 @@ const height = 250;
 
 function MediaTabs() {
   const Media = Mpris.get_default();
-  const players = createBinding(Media, "players");
+  const players = createBinding(Media, "players").as((p) => p ?? []);
+
+  const hasPlayers = createComputed([players], (p) => p.length > 0);
+
   const [activePlayer, setActivePlayer] = createState(
-    Media.players[0].identity,
+    Media.players.at(0)?.identity ?? null,
   );
 
   const stackClassNames = createComputed(
     [activePlayer, players],
     (active, all) => {
-      return all[0].identity === active ? "" : "rounded-top-left";
+      const first = all.at(0)?.identity ?? null;
+      return first === active ? "" : "rounded-top-left";
     },
   );
 
   return (
-    <box class="tabs" orientation={Gtk.Orientation.VERTICAL}>
+    <box
+      class="tabs"
+      visible={hasPlayers}
+      orientation={Gtk.Orientation.VERTICAL}
+    >
       <box>
         <For each={players}>
           {(player: Mpris.Player) => (

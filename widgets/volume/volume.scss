@@ -31,6 +31,18 @@ box.tabs {
   }
 }
 
+
+.media-placeholder {
+  padding: $spacing-4;
+  background-color: $color-crust;
+  border-radius: $radius-lg;
+
+  label {
+    font-size: $text-sm;
+    color: $color-subtext;
+  }
+}
+
 .media-player {
 
   .title {

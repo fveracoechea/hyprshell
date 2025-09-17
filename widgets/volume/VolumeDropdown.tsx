@@ -77,7 +77,7 @@ export function VolumeDropdown() {
             valign={Gtk.Align.START}
             onClicked={() => {
               popover.popdown();
-              execAsync("ghostty --class=Wiremix -e wiremix");
+              execAsync("ghostty --class=TUI.float -e wiremix");
             }}
           >
             <label label="󰒓" class="icon" />

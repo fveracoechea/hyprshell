@@ -8,17 +8,23 @@
   }
 
   scrolledwindow {
-    padding: $spacing-2;
-    border-radius: $radius-lg;
-    background-color: $color-crust
+    padding: $spacing-3 $spacing-2;
   }
 
   .bluetooth-device {
-    label.device-name {
-      font-size: $text-md;
-
-      &.connected {
+    label {
+      &.icon {
+        font-size: $text-xl;
+        padding: $spacing-1 $spacing-2;
         color: $color-secondary;
+
+        &.connected {
+          color: $color-primary;
+        }
+      }
+
+      &.name {
+        color: $color-text;
       }
     }
 

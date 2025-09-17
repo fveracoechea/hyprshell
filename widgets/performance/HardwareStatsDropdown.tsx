@@ -16,7 +16,7 @@ type StatProps = {
 };
 
 function Stat(props: StatProps) {
-  const { value, label = "", title, icon, widthRequest = 400 } = props;
+  const { value, label = "", title, icon, widthRequest = 380 } = props;
   return (
     <box
       hexpand
@@ -26,21 +26,19 @@ function Stat(props: StatProps) {
       orientation={Gtk.Orientation.VERTICAL}
     >
       <box hexpand spacing={24}>
-        <box spacing={12} hexpand halign={Gtk.Align.START}>
-          <label label={icon} class="icon" />
-          <label class="title" label={title} hexpand halign={Gtk.Align.START} />
-        </box>
+        <label class="title" label={title} hexpand halign={Gtk.Align.START} />
         <label class="label" label={label} halign={Gtk.Align.END} />
       </box>
-      <box spacing={24} hexpand>
-        <levelbar
-          value={value}
-          hexpand
-          orientation={Gtk.Orientation.HORIZONTAL}
-          halign={Gtk.Align.CENTER}
-          widthRequest={widthRequest}
-          heightRequest={4}
-        />
+      <box spacing={16} hexpand>
+        <label label={icon} class="icon" />
+        <box hexpand valign={Gtk.Align.CENTER}>
+          <levelbar
+            value={value}
+            hexpand
+            orientation={Gtk.Orientation.HORIZONTAL}
+            widthRequest={widthRequest}
+          />
+        </box>
       </box>
     </box>
   );
@@ -76,9 +74,29 @@ export function HardwareStatsDropdown() {
   );
 
   return (
-    <Dropdown icon="󰓅" name="Performance">
+    <Dropdown
+      icon="󰓅"
+      name="Performance"
+      actions={(popover) => (
+        <box spacing={8}>
+          <button
+            class="icon-button"
+            tooltipText="Open BTop"
+            marginTop={8}
+            valign={Gtk.Align.START}
+            onClicked={() => {
+              popover.popdown();
+              execAsync("ghostty --class=TUI.float -e btop");
+            }}
+          >
+            <label label="" class="icon" />
+          </button>
+        </box>
+      )}
+    >
       {() => (
         <box
+          class="stats-wrapper"
           hexpand
           spacing={24}
           orientation={Gtk.Orientation.VERTICAL}

@@ -1,36 +1,40 @@
 @use "../../styles/variables" as *;
 
-.stats {
+.stats-wrapper {
+  padding: $spacing-3 $spacing-2;
 
-  label.title {
-    font-size: $text-sm;
-    color: $color-text;
-  }
+  .stats {
 
-  label.label {
-    font-size: $text-md;
-    color: $color-secondary;
-  }
-
-  label.icon {
-    font-size: $text-lg;
-    color: $color-subtext;
-  }
-
-  levelbar {
-    trough {
-      min-height: $spacing-2;
+    label.title {
+      font-size: $text-md;
+      color: $color-text;
     }
 
-    block {
-      border-radius: $radius-full;
+    label.label {
+      font-size: $text-md;
+      color: $color-secondary;
+    }
 
-      &.filled {
-        background-color: $color-primary;
+    label.icon {
+      font-size: $text-lg;
+      color: $color-text;
+    }
+
+    levelbar {
+      trough {
+        min-height: $spacing-2;
       }
 
-      &.empty {
-        background-color: $color-border;
+      block {
+        border-radius: $radius-full;
+
+        &.filled {
+          background-color: $color-subtext;
+        }
+
+        &.empty {
+          background-color: $color-border;
+        }
       }
     }
   }

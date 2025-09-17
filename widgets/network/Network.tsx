@@ -36,7 +36,7 @@ export function Network() {
         halign={Gtk.Align.CENTER}
         tooltipText={tooltip}
         onClicked={() => {
-          execAsync("ghostty --class=Impala -e impala");
+          execAsync("ghostty --class=TUI.float -e impala");
         }}
       >
         {"󰀂"}

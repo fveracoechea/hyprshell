@@ -6,11 +6,7 @@ export function Performance() {
     <box>
       <menubutton
         class="icon-button"
-        tooltipText="Performance Stats"
         halign={Gtk.Align.CENTER}
-        // onClicked={() => {
-        //   execAsync("ghostty --class=Btop -e btop");
-        // }}
       >
         {"󰓅"}
         <HardwareStatsDropdown />

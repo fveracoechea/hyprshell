@@ -1,1 +1,27 @@
 @use "../../styles/variables" as *;
+
+.net-content {
+  padding: $spacing-3 $spacing-2;
+}
+
+.net-stat {
+  label.icon {
+    color: $color-text;
+    font-size: $text-2xl;
+  }
+
+  label.title {
+    font-size: $text-md;
+    color: $color-text;
+  }
+
+  label.subtitle {
+    font-size: $text-md;
+    color: $color-subtext;
+  }
+
+  label.label {
+    font-size: $text-md;
+    color: $color-secondary;
+  }
+}

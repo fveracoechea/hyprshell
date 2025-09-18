@@ -1,0 +1,166 @@
+import { Accessor, createBinding, createComputed, With } from "ags";
+import { Gtk } from "ags/gtk4";
+import { execAsync } from "ags/process";
+
+import AstalNetwork from "gi://AstalNetwork";
+
+import { Dropdown } from "../../styles/components/Dropdown";
+import GL from "gi://GL?version=1.0";
+import { logObject } from "../../utils/log";
+
+function getDeviceState(status: number) {
+  switch (status) {
+    case AstalNetwork.DeviceState.UNMANAGED:
+      return "Unmanaged";
+    case AstalNetwork.DeviceState.UNAVAILABLE:
+      return "Unavailable";
+    case AstalNetwork.DeviceState.DISCONNECTED:
+      return "Disconnected";
+    case AstalNetwork.DeviceState.PREPARE:
+      return "Prepare";
+    case AstalNetwork.DeviceState.CONFIG:
+      return "Config";
+    case AstalNetwork.DeviceState.NEED_AUTH:
+      return "Need Auth";
+    case AstalNetwork.DeviceState.IP_CONFIG:
+      return "Ip Config";
+    case AstalNetwork.DeviceState.IP_CHECK:
+      return "Ip Check";
+    case AstalNetwork.DeviceState.SECONDARIES:
+      return "Secondaries";
+    case AstalNetwork.DeviceState.ACTIVATED:
+      return "Activated";
+    case AstalNetwork.DeviceState.DEACTIVATING:
+      return "Deactivating";
+    case AstalNetwork.DeviceState.FAILED:
+      return "Failed";
+    default:
+      return "Unknown";
+  }
+}
+
+type NetStatProps = {
+  icon: string | Accessor<string>;
+  title: string | Accessor<string>;
+  subtitle: string | Accessor<string>;
+  label: string | Accessor<string>;
+};
+
+function NetStat(props: NetStatProps) {
+  const { icon, title, subtitle, label } = props;
+  return (
+    <box spacing={16} class="net-stat">
+      <label class="icon" label={icon} valign={Gtk.Align.START} />
+      <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.CENTER}>
+        <label
+          hexpand
+          class="title"
+          label={title}
+          halign={Gtk.Align.START}
+          valign={Gtk.Align.START}
+        />
+        <label
+          class="subtitle"
+          label={subtitle}
+          halign={Gtk.Align.START}
+          valign={Gtk.Align.START}
+        />
+      </box>
+      <label
+        class="label"
+        valign={Gtk.Align.START}
+        label={label}
+      />
+    </box>
+  );
+}
+
+export function NetworkDropdown() {
+  const network = AstalNetwork.get_default();
+  const primarySignal = createBinding(network, "primary");
+  const wiredBinding = createBinding(network, "wired");
+  const wifiBinding = createBinding(network, "wifi");
+
+  const primary = createComputed([createBinding(network, "primary")], (p) => {
+    switch (p) {
+      case AstalNetwork.Primary.WIRED:
+        return "wired";
+
+      case AstalNetwork.Primary.WIFI:
+        return "wifi";
+      default:
+        return "none";
+    }
+  });
+
+  const icon = createComputed([primary], (p) => {
+    switch (p) {
+      case "wired":
+      case "wifi":
+        return "󰀂";
+      default:
+        return "󰛵";
+    }
+  });
+
+  return (
+    <Dropdown
+      name="Network"
+      icon={icon}
+      actions={(popover) => (
+        <box spacing={8} valign={Gtk.Align.START} halign={Gtk.Align.END}>
+          <button
+            class="icon-button"
+            tooltipText="Open Impala"
+            valign={Gtk.Align.START}
+            onClicked={() => {
+              popover.popdown();
+              execAsync("ghostty --class=TUI.float -e impala");
+            }}
+          >
+            <label label="󰒓" class="icon" />
+          </button>
+        </box>
+      )}
+    >
+      {() => (
+        <box
+          widthRequest={400}
+          class="net-content"
+          orientation={Gtk.Orientation.VERTICAL}
+          spacing={24}
+        >
+          <With value={wiredBinding}>
+            {(wired) => {
+              if (!wired) return <box />;
+              return (
+                <NetStat
+                  icon="󰈀"
+                  title="Wired Ethernet"
+                  subtitle={createBinding(wired, "state")(getDeviceState)}
+                  label={createBinding(wired, "speed")((s) => `${s} Mbps`)}
+                />
+              );
+            }}
+          </With>
+
+          <With value={wifiBinding}>
+            {(wifi) => {
+              if (!wifi) return <box />;
+              return (
+                <NetStat
+                  icon="󰖩"
+                  title={createBinding(wifi, "ssid")((v) => `Wi-Fi: ${v}`)}
+                  subtitle={createBinding(wifi, "state")(getDeviceState)}
+                  label={createBinding(wifi, "strength")((s) =>
+                    s ? `${s}%` : "󰖪"
+                  )}
+                />
+              );
+            }}
+          </With>
+        </box>
+      )}
+    </Dropdown>
+  );
+}

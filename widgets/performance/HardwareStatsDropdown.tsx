@@ -78,11 +78,10 @@ export function HardwareStatsDropdown() {
       icon="󰓅"
       name="Performance"
       actions={(popover) => (
-        <box spacing={8}>
+        <box spacing={8} valign={Gtk.Align.START} halign={Gtk.Align.END}>
           <button
             class="icon-button"
             tooltipText="Open BTop"
-            marginTop={8}
             valign={Gtk.Align.START}
             onClicked={() => {
               popover.popdown();

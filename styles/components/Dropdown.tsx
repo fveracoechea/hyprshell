@@ -1,18 +1,18 @@
-import { createState, State, With } from "ags";
+import { Accessor, createState, State, With } from "ags";
 import { Astal, Gdk, Gtk } from "ags/gtk4";
 import Graphene from "gi://Graphene";
 import app from "ags/gtk4/app";
 
 type DropdownHeaderProps = {
   name: string;
-  icon: string;
+  icon: string | Accessor<string>;
   children?: JSX.Element;
 };
 
 export function DropdownHeader(props: DropdownHeaderProps) {
   const { name, icon, children } = props;
   return (
-    <box spacing={8} class="dropdown-header" hexpand>
+    <box spacing={8} class="dropdown-header" hexpand valign={Gtk.Align.START}>
       <box spacing={12} hexpand>
         <label class="dropdown-icon" label={icon} />
         <label class="dropdown-title" label={name} />
@@ -24,7 +24,7 @@ export function DropdownHeader(props: DropdownHeaderProps) {
 
 type DropdownContentProps = {
   name: string;
-  icon: string;
+  icon: string | Accessor<string>;
   actions?: (popover: Gtk.Popover) => JSX.Element;
   children: (popover: Gtk.Popover) => JSX.Element;
   widthRequest?: number;

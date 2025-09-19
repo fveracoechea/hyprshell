@@ -146,7 +146,16 @@ export function NetworkDropdown() {
         >
           <With value={wiredBinding}>
             {(wired) => {
-              if (!wired) return <box />;
+              if (!wired) {
+                return (
+                  <NetStat
+                    icon="󰅛"
+                    title="No Wired Ethernet Connected"
+                    subtitle="Unavailable"
+                    label="N/A"
+                  />
+                );
+              }
               return (
                 <NetStat
                   icon="󰈀"

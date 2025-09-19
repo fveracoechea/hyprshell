@@ -52,6 +52,29 @@ function getDeviceState(status: number) {
   }
 }
 
+function getWifiIcon(status: number) {
+  switch (status) {
+    case AstalNetwork.DeviceState.PREPARE:
+    case AstalNetwork.DeviceState.CONFIG:
+      return "󱚾";
+    case AstalNetwork.DeviceState.NEED_AUTH:
+    case AstalNetwork.DeviceState.IP_CONFIG:
+    case AstalNetwork.DeviceState.IP_CHECK:
+    case AstalNetwork.DeviceState.SECONDARIES:
+      return "󱛇";
+    case AstalNetwork.DeviceState.DEACTIVATING:
+    case AstalNetwork.DeviceState.FAILED:
+      return "󱚵";
+    case AstalNetwork.DeviceState.ACTIVATED:
+      return "󱚽";
+    case AstalNetwork.DeviceState.UNMANAGED:
+    case AstalNetwork.DeviceState.UNAVAILABLE:
+    case AstalNetwork.DeviceState.DISCONNECTED:
+    default:
+      return "󰖪";
+  }
+}
+
 type NetStatProps = {
   icon: string | Accessor<string>;
   title: string | Accessor<string>;
@@ -137,14 +160,25 @@ export function NetworkDropdown() {
 
           <With value={wifiBinding}>
             {(wifi) => {
-              if (!wifi) return <box />;
+              if (!wifi) {
+                return (
+                  <NetStat
+                    icon="󰖪"
+                    title="No Wi-Fi connected"
+                    subtitle="Unavailable"
+                    label=""
+                  />
+                );
+              }
               return (
                 <NetStat
-                  icon="󰖩"
-                  title={createBinding(wifi, "ssid")((v) => `Wi-Fi: ${v}`)}
+                  icon={createBinding(wifi, "state")(getWifiIcon)}
                   subtitle={createBinding(wifi, "state")(getDeviceState)}
+                  title={createBinding(wifi, "ssid")((v) =>
+                    v ? `Wi-Fi: ${v}` : "No Wi-Fi Connected"
+                  )}
                   label={createBinding(wifi, "strength")((s) =>
-                    s ? `${s}%` : "󰖪"
+                    s ? `${s}%` : "N/A"
                   )}
                 />
               );

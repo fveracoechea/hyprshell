@@ -8,6 +8,19 @@ import { Dropdown } from "../../styles/components/Dropdown";
 import GL from "gi://GL?version=1.0";
 import { logObject } from "../../utils/log";
 
+export function getNetworkIcon(network: AstalNetwork) {
+  return createComputed([createBinding(network, "primary")], (p) => {
+    switch (p) {
+      case AstalNetwork.Primary.WIRED:
+        return "󰈀";
+      case AstalNetwork.Primary.WIFI:
+        return "󰖩";
+      default:
+        return "󰤭";
+    }
+  });
+}
+
 function getDeviceState(status: number) {
   switch (status) {
     case AstalNetwork.DeviceState.UNMANAGED:
@@ -81,32 +94,10 @@ export function NetworkDropdown() {
   const wiredBinding = createBinding(network, "wired");
   const wifiBinding = createBinding(network, "wifi");
 
-  const primary = createComputed([createBinding(network, "primary")], (p) => {
-    switch (p) {
-      case AstalNetwork.Primary.WIRED:
-        return "wired";
-
-      case AstalNetwork.Primary.WIFI:
-        return "wifi";
-      default:
-        return "none";
-    }
-  });
-
-  const icon = createComputed([primary], (p) => {
-    switch (p) {
-      case "wired":
-      case "wifi":
-        return "󰀂";
-      default:
-        return "󰛵";
-    }
-  });
-
   return (
     <Dropdown
+      icon="󰀂"
       name="Network"
-      icon={icon}
       actions={(popover) => (
         <box spacing={8} valign={Gtk.Align.START} halign={Gtk.Align.END}>
           <button

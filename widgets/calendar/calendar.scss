@@ -1,26 +1,35 @@
-@use "../../styles/variables" as v;
+@use "../../styles/variables" as *;
 
+box.calendar-box {
+
+  label.time,
+  label.date {
+    font-size: $text-lg;
+  }
+}
 
 calendar {
+  font-size: $text-lg;
+
   grid label {
-    border-radius: v.$radius-lg;
-    margin: v.$spacing-1;
+    border-radius: $radius-full;
+    margin: $spacing-1;
   }
 
   header {
-    margin-bottom: v.$spacing-4;
-    margin-top: v.$spacing-1;
+    margin-bottom: $spacing-4;
+    margin-top: $spacing-1;
 
     button {
-      padding: 0 v.$spacing-1;
+      padding: 0 $spacing-1;
     }
 
     stack.month {
-      color: v.$color-secondary;
+      color: $color-secondary;
     }
 
     label.year {
-      color: v.$color-secondary;
+      color: $color-secondary;
     }
   }
 
@@ -30,18 +39,18 @@ calendar {
     }
 
     label.day-name {
-      color: v.$color-primary;
+      color: $color-primary;
       font-weight: bold;
     }
 
     label.today {
-      background-color: v.$color-primary;
-      color: v.$color-crust;
+      background-color: $color-primary;
+      color: $color-crust;
       font-weight: bold;
     }
 
     label.other-month {
-      color: v.$color-subtext;
+      color: $color-subtext;
       font-weight: 300;
     }
   }

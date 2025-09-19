@@ -1,12 +1,22 @@
 @use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
-menubutton.tray-item button {
-  box contents {
-    padding: $spacing-1;
-    border-radius: $radius-lg;
+box.tray {
+
+  box.tray-items {
+    menubutton.tray-button {
+      @include button($spacing-2, $spacing-1);
+      border-radius: $radius-full;
+    }
   }
 
-  &:hover box contents {
-    background-color: rgba($color-border, $opacity-50);
+  button.icon-button {
+    font-size: $text-2xl;
+  }
+
+  &.open {
+    button.icon-button {
+      transform: rotate(180deg);
+    }
   }
 }

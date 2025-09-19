@@ -1,25 +1,5 @@
 @use "../variables" as *;
-
-
-@mixin active-state($bg-color: $color-primary, $text-color: $color-crust) {
-  &.active {
-    background-color: $bg-color;
-    color: $text-color;
-  }
-}
-
-
-@mixin button($padding-x: $spacing-3, $padding-y: 0, $radius: $radius-lg) {
-  padding: $padding-y $padding-x;
-  border-radius: $radius;
-  transition: color $transition-normal, background-color $transition-normal;
-  color: $color-text;
-
-  &:hover {
-    background-color: rgba($color-border, $opacity-50);
-    color: $color-primary;
-  }
-}
+@use "../mixins" as *;
 
 
 .button {
@@ -45,14 +25,9 @@
   }
 }
 
-.tray-button {
-  @include button($spacing-2);
-  min-width: $spacing-6;
-}
 
 .icon-button {
   @include button($spacing-2);
-  padding-right: $spacing-2_5;
   min-width: $spacing-6;
   font-size: $text-xl;
 }

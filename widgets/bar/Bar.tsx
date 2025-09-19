@@ -50,8 +50,8 @@ export default function Bar(props: BarProps) {
         </box>
 
         <box $type="end" spacing={28}>
-          <SysTray />
           <box>
+            <SysTray />
             <Notifications />
             <Volume />
             <Network />

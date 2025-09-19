@@ -1,12 +1,15 @@
 @use "../../styles/variables" as *;
 
 window.shell-bar {
-  border: 2px solid $color-border;
-  border-radius: $radius-xl;
+  border: 4px solid $color-border;
+  border-bottom-left-radius: $radius-xl;
+  border-bottom-right-radius: $radius-xl;
 
   background-color: $color-base;
   padding: $spacing-2_5 $spacing-5;
-  margin: $spacing-2 $spacing-5;
+  margin-left: $spacing-4;
+  margin-bottom: $spacing-4;
+  margin-right: $spacing-4;
   min-width: 1800px;
 }
 

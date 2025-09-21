@@ -33,49 +33,70 @@ function NotificationIcon(props: { notification: AstalNotifd.Notification }) {
     );
   }
 
-  return <box class="no-image" />;
+  return <label class="no-image" label="󰂚" />;
 }
 
 export function NotificationCard(props: NotificationCardProps) {
   const { data } = props;
   return (
     <box
-      orientation={Gtk.Orientation.VERTICAL}
-      spacing={8}
+      widthRequest={500}
       class="notification-card"
     >
-      <box>
+      <box class="icon-content">
         <NotificationIcon notification={data} />
       </box>
 
-      <label label={data.app_name} />
+      <box
+        hexpand
+        spacing={4}
+        orientation={Gtk.Orientation.VERTICAL}
+        class="card-content"
+      >
+        <box
+          hexpand
+          spacing={16}
+        >
+          <label
+            hexpand
+            class="label"
+            label={data.app_name}
+            halign={Gtk.Align.START}
+          />
+          <label
+            hexpand
+            class="label"
+            halign={Gtk.Align.END}
+            label={String(data.time)}
+          />
+          <button
+            class="icon-button close-button"
+            onClicked={() => data.dismiss()}
+          >
+            {"󰅖"}
+          </button>
+        </box>
 
-      <label
-        maxWidthChars={40}
-        wrap
-        halign={Gtk.Align.START}
-        label={data.summary}
-        tooltipMarkup={data.summary}
-        ellipsize={Pango.EllipsizeMode.END}
-      />
+        <label
+          hexpand
+          class="title"
+          maxWidthChars={50}
+          label={data.summary}
+          halign={Gtk.Align.START}
+          tooltipMarkup={data.summary}
+          ellipsize={Pango.EllipsizeMode.END}
+        />
 
-      {data.body && (
         <label
           wrap
-          class="text-sm"
-          maxWidthChars={30}
+          class="body"
+          maxWidthChars={50}
           label={data.body}
+          visible={Boolean(data.body)}
           halign={Gtk.Align.START}
           ellipsize={Pango.EllipsizeMode.END}
         />
-      )}
-
-      <button
-        class="icon-button close-button"
-        onClicked={() => data.dismiss()}
-      >
-        {"󰅖"}
-      </button>
+      </box>
     </box>
   );
 }

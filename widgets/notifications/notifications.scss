@@ -1,1 +1,61 @@
 @use "../../styles/variables" as *;
+
+
+.notifications-content {
+  margin-top: $spacing-2;
+
+  .no-notifications {
+    padding: $spacing-2;
+    text-align: center;
+
+    label.label {
+      font-size: $text-md;
+      color: $color-subtext;
+    }
+
+    label.icon {
+      font-size: $text-2xl * 3;
+      color: $color-border;
+    }
+  }
+}
+
+.notification-card {
+  border-radius: $radius-lg;
+  background-color: $color-base;
+  transition: border-color 250ms ease, background-color 250ms ease;
+
+  &:hover {
+    background-color: $color-crust;
+  }
+
+  .icon-content {
+    padding: $spacing-2 $spacing-4;
+  }
+
+  .card-content {
+    padding: $spacing-2;
+  }
+
+
+  .no-image {
+    color: $color-border;
+    font-size: $text-2xl * 2;
+  }
+
+  label.label {
+    font-size: $text-sm;
+    color: $color-subtext;
+  }
+
+  label.title {
+    font-size: $text-md;
+    color: $color-text;
+    font-weight: 500;
+  }
+
+  label.body {
+    font-size: $text-md;
+    color: $color-text;
+  }
+}

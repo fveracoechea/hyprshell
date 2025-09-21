@@ -1,0 +1,25 @@
+@use "../variables" as *;
+
+scrollbar {
+  transition: background-color 250ms ease;
+  background-color: transparent;
+  border-radius: $radius-lg;
+}
+
+scrollbar>range>trough {
+  background-color: $color-crust;
+  border-radius: $radius-lg;
+}
+
+scrollbar>range>trough>slider {
+  transition: background-color 250ms ease;
+  background-color: rgba($color-border, $opacity-75);
+  border-radius: $radius-lg;
+  min-width: $spacing-1_5;
+  min-height: $spacing-1_5;
+  margin: 2px;
+}
+
+scrollbar:hover>range>trough>slider {
+  background-color: $color-border;
+}

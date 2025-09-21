@@ -1,6 +1,7 @@
 import type { Setter } from "ags";
 import type { Accessor } from "ags";
 import type AstalNotifd from "gi://AstalNotifd";
+import GLib from "gi://GLib";
 
 export function notificationHandler(
   notifd: AstalNotifd.Notifd,
@@ -28,4 +29,10 @@ export function notificationHandler(
     notifd.disconnect(notifiedHandler);
     notifd.disconnect(resolvedHandler);
   };
+}
+
+export function time(timestamp: number, format = "%I:%M %p"): string {
+  return GLib.DateTime
+    .new_from_unix_local(timestamp)
+    .format(format) ?? "--";
 }

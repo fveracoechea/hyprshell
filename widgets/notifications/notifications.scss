@@ -2,6 +2,7 @@
 
 
 .notifications-content {
+  padding-right: $spacing-4;
 
   .no-notifications {
     padding: $spacing-2;
@@ -42,7 +43,12 @@
     font-size: $text-2xl * 2;
   }
 
-  label.label {
+  label.time {
+    font-size: $text-sm;
+    color: $color-secondary;
+  }
+
+  label.app {
     font-size: $text-sm;
     color: $color-subtext;
   }
@@ -54,7 +60,7 @@
   }
 
   label.body {
-    font-size: $text-md;
+    font-size: $text-sm;
     color: $color-text;
   }
 }

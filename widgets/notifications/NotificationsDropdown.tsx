@@ -32,7 +32,7 @@ export function NotificationsDropdown() {
           </For>
 
           <box
-            widthRequest={500}
+            widthRequest={400}
             class="no-notifications"
             visible={notifications((n) => n.length < 1)}
             orientation={Gtk.Orientation.VERTICAL}

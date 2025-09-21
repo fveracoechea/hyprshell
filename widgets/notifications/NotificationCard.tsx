@@ -40,7 +40,7 @@ export function NotificationCard(props: NotificationCardProps) {
   const { data } = props;
   return (
     <box
-      widthRequest={500}
+      widthRequest={400}
       class="notification-card"
     >
       <box class="icon-content">

@@ -2,8 +2,6 @@
 
 
 .notifications-content {
-  padding-right: $spacing-4;
-
   .no-notifications {
     padding: $spacing-2;
     text-align: center;
@@ -14,53 +12,60 @@
     }
 
     label.icon {
-      font-size: $text-2xl * 3;
+      font-size: $spacing-12;
       color: $color-border;
     }
   }
-}
 
-.notification-card {
-  border-radius: $radius-lg;
-  background-color: $color-base;
-  transition: border-color 250ms ease, background-color 250ms ease;
 
-  &:hover {
-    background-color: $color-crust;
+  .notification-card {
+    border-radius: $radius-lg;
+    background-color: $color-base;
+    transition: border-color 250ms ease, background-color 250ms ease;
+
+    &:hover {
+      background-color: $color-crust;
+    }
+
+    .icon-content {
+      padding: $spacing-2 $spacing-4;
+    }
+
+    .card-content {
+      padding: $spacing-2;
+    }
+
+
+    .no-image {
+      color: $color-border;
+      font-size: $text-2xl * 2;
+    }
+
+    image.app-icon {
+      border-radius: $radius-full;
+      -gtk-icon-size: $spacing-12;
+    }
+
+    label.time {
+      font-size: $text-md;
+      color: $color-secondary;
+    }
+
+    label.app {
+      font-size: $text-sm;
+      color: $color-subtext;
+    }
+
+    label.title {
+      font-size: $text-md;
+      color: $color-text;
+      font-weight: 500;
+    }
+
+    label.body {
+      font-size: $text-sm;
+      color: $color-text;
+    }
   }
 
-  .icon-content {
-    padding: $spacing-2 $spacing-4;
-  }
-
-  .card-content {
-    padding: $spacing-2;
-  }
-
-
-  .no-image {
-    color: $color-border;
-    font-size: $text-2xl * 2;
-  }
-
-  label.time {
-    font-size: $text-sm;
-    color: $color-secondary;
-  }
-
-  label.app {
-    font-size: $text-sm;
-    color: $color-subtext;
-  }
-
-  label.title {
-    font-size: $text-md;
-    color: $color-text;
-    font-weight: 500;
-  }
-
-  label.body {
-    font-size: $text-sm;
-    color: $color-text;
-  }
 }

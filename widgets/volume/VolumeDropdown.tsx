@@ -8,8 +8,6 @@ import { MediaPlayer } from "./MediaPlayer";
 import { execAsync } from "ags/process";
 import { VolumeSliders } from "./VolumeSliders";
 
-const width = 420;
-
 function MediaTabs() {
   const Media = Mpris.get_default();
   const players = createBinding(Media, "players").as((p) => p ?? []);
@@ -67,7 +65,6 @@ export function VolumeDropdown() {
     <Dropdown
       icon=""
       name="Volume"
-      widthRequest={width}
       actions={(popover) => (
         <box spacing={8} valign={Gtk.Align.START} halign={Gtk.Align.END}>
           <button
@@ -85,7 +82,7 @@ export function VolumeDropdown() {
       )}
     >
       {() => (
-        <box hexpand orientation={Gtk.Orientation.VERTICAL} spacing={10}>
+        <box hexpand orientation={Gtk.Orientation.VERTICAL} spacing={16}>
           <VolumeSliders />
           <MediaTabs />
         </box>

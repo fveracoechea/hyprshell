@@ -121,6 +121,7 @@ export function NetworkDropdown() {
     <Dropdown
       icon="󰀂"
       name="Network"
+      widthRequest={380}
       actions={(popover) => (
         <box spacing={8} valign={Gtk.Align.START} halign={Gtk.Align.END}>
           <button
@@ -139,7 +140,6 @@ export function NetworkDropdown() {
     >
       {() => (
         <box
-          widthRequest={400}
           class="net-content"
           orientation={Gtk.Orientation.VERTICAL}
           spacing={24}

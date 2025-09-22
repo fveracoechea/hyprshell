@@ -52,8 +52,8 @@ export function VolumeSliders() {
   const mic = Wp.audio.default_microphone;
   return (
     <box
-      spacing={8}
       hexpand
+      spacing={18}
       orientation={Gtk.Orientation.VERTICAL}
     >
       <Slider device={speaker} icon="" />

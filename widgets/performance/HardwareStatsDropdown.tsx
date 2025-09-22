@@ -16,7 +16,7 @@ type StatProps = {
 };
 
 function Stat(props: StatProps) {
-  const { value, label = "", title, icon, widthRequest = 380 } = props;
+  const { value, label = "", title, icon, widthRequest = 360 } = props;
   return (
     <box
       hexpand
@@ -77,6 +77,7 @@ export function HardwareStatsDropdown() {
     <Dropdown
       icon="󰓅"
       name="Performance"
+      widthRequest={380}
       actions={(popover) => (
         <box spacing={8} valign={Gtk.Align.START} halign={Gtk.Align.END}>
           <button

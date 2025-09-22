@@ -16,6 +16,7 @@ function NotificationIcon(props: { notification: AstalNotifd.Notification }) {
   if (notification.image && fileExists(notification.image)) {
     return (
       <image
+        class="app-icon"
         file={notification.image}
         overflow={Gtk.Overflow.HIDDEN}
         valign={Gtk.Align.CENTER}
@@ -26,13 +27,14 @@ function NotificationIcon(props: { notification: AstalNotifd.Notification }) {
   if (notification.appIcon || notification.desktopEntry) {
     return (
       <image
+        class="app-icon"
         iconName={notification.appIcon || notification.desktopEntry}
         valign={Gtk.Align.CENTER}
       />
     );
   }
 
-  return <label class="no-image" label="󰂚" />;
+  return <label class="no-image" label="󰂜" valign={Gtk.Align.CENTER} />;
 }
 
 export const NotificationCardWidth = 500;
@@ -58,7 +60,7 @@ export function NotificationCard(props: NotificationCardProps) {
         >
           <box
             hexpand
-            spacing={16}
+            spacing={8}
           >
             <label
               hexpand
@@ -67,11 +69,17 @@ export function NotificationCard(props: NotificationCardProps) {
               halign={Gtk.Align.START}
             />
             <label
-              hexpand
               class="time"
               halign={Gtk.Align.END}
               label={time(data.time)}
             />
+            <button
+              class="button close-button"
+              halign={Gtk.Align.END}
+              onClicked={() => data.dismiss()}
+            >
+              <label class="icon" label="" />
+            </button>
           </box>
           <label
             hexpand
@@ -89,17 +97,6 @@ export function NotificationCard(props: NotificationCardProps) {
             visible={Boolean(data.body)}
             halign={Gtk.Align.START}
           />
-        </box>
-
-        <box class="actions" visible={false}>
-          <button
-            visible={false}
-            class="button close-button"
-            onClicked={() => data.dismiss()}
-          >
-            <label class="label" label="Dismiss" />
-            <label class="icon" label="" />
-          </button>
         </box>
       </box>
     </box>

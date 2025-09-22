@@ -37,7 +37,7 @@ export function Dropdown(props: DropdownContentProps) {
     children,
     name,
     icon,
-    widthRequest,
+    widthRequest = 450,
     heightRequest,
   } = props;
 
@@ -47,12 +47,12 @@ export function Dropdown(props: DropdownContentProps) {
     <popover $={(self) => setPopover(self)} class="dropdown">
       <box
         name={name}
+        hexpand
+        vexpand
         orientation={Gtk.Orientation.VERTICAL}
-        widthRequest={widthRequest}
-        heightRequest={heightRequest}
         class="dropdown-contents"
       >
-        <box orientation={Gtk.Orientation.VERTICAL}>
+        <box orientation={Gtk.Orientation.VERTICAL} hexpand>
           <DropdownHeader icon={icon} name={name}>
             <With value={popover}>
               {(value) => {
@@ -61,18 +61,46 @@ export function Dropdown(props: DropdownContentProps) {
               }}
             </With>
           </DropdownHeader>
-          <box
-            widthRequest={widthRequest}
-            heightRequest={heightRequest}
-          >
-            <With
-              value={popover}
-              children={(value) => {
-                if (value) return children(value);
-                return <box />;
-              }}
-            />
-          </box>
+
+          {heightRequest
+            ? (
+              <scrolledwindow
+                hexpand
+                vexpand
+                heightRequest={heightRequest}
+                widthRequest={widthRequest}
+              >
+                <box
+                  hexpand
+                  vexpand
+                  class="dropdown-body"
+                >
+                  <With
+                    value={popover}
+                    children={(value) => {
+                      if (value) return children(value);
+                      return <box />;
+                    }}
+                  />
+                </box>
+              </scrolledwindow>
+            )
+            : (
+              <box
+                hexpand
+                vexpand
+                class="dropdown-body"
+                widthRequest={widthRequest}
+              >
+                <With
+                  value={popover}
+                  children={(value) => {
+                    if (value) return children(value);
+                    return <box />;
+                  }}
+                />
+              </box>
+            )}
         </box>
       </box>
     </popover>

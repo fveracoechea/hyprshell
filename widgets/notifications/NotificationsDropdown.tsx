@@ -25,11 +25,9 @@ export const notificationIcon = createComputed(
     if (enable && hasNotifications) {
       return "󱅫";
     }
-
     if (enable && !hasNotifications) {
       return "󰂚";
     }
-
     return "󰂛";
   },
 );

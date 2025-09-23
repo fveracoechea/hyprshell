@@ -37,10 +37,7 @@ export default function Bar(props: BarProps) {
         <box $type="start" spacing={28}>
           <box spacing={12}>
             <label label="󱄅" class="logo-icon" />
-            <label
-              label={username}
-              class="username"
-            />
+            <label label={username} class="username" />
           </box>
           <Workspaces />
         </box>

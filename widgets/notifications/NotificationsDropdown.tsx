@@ -1,13 +1,7 @@
 import AstalNotifd from "gi://AstalNotifd";
 import { Dropdown } from "../../styles/components/Dropdown";
 import { Gtk } from "ags/gtk4";
-import {
-  createBinding,
-  createComputed,
-  createState,
-  For,
-  onCleanup,
-} from "ags";
+import { createBinding, createComputed, createState, For, onCleanup } from "ags";
 import { notificationHandler } from "./utils";
 import { NotificationCard } from "./NotificationCard";
 import { createPoll } from "ags/time";
@@ -49,10 +43,7 @@ export function NotificationsDropdown() {
       widthRequest={500}
       actions={() => (
         <box spacing={8} valign={Gtk.Align.START} halign={Gtk.Align.END}>
-          <box
-            valign={Gtk.Align.START}
-            halign={Gtk.Align.END}
-          >
+          <box valign={Gtk.Align.START} halign={Gtk.Align.END}>
             <switch
               active={dontDisturb}
               heightRequest={4}
@@ -68,13 +59,10 @@ export function NotificationsDropdown() {
             class="icon-button"
             valign={Gtk.Align.START}
             tooltipText="Clear All Notifications"
-            visible={createBinding(notifd, "notifications").as((n) =>
-              n.length > 0
-            )}
+            visible={notifications((n) => n.length > 0)}
             onClicked={() => {
-              notifd.notifications.forEach((n) =>
-                n.dismiss()
-              );
+              const nts = notifications.get();
+              nts.forEach((n) => n.dismiss());
             }}
           >
             <label label="󰩹" class="icon" />
@@ -89,9 +77,7 @@ export function NotificationsDropdown() {
           class="notifications-content"
           orientation={Gtk.Orientation.VERTICAL}
         >
-          <For
-            each={notifications((n) => [...n].sort((a, b) => b.time - b.time))}
-          >
+          <For each={notifications((n) => [...n].sort((a, b) => b.time - b.time))}>
             {(n: AstalNotifd.Notification) => {
               return <NotificationCard data={n} popover={popover} />;
             }}

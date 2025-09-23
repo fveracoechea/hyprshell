@@ -1,6 +1,5 @@
 @use "../variables" as *;
 
-
 popover:not(.dropdown) contents {
   margin-top: $spacing-1_5;
   border-style: solid;
@@ -15,8 +14,9 @@ popover:not(.dropdown) contents {
   modelbutton {
     padding: $spacing-1 $spacing-2_5;
     border-radius: $radius-lg;
-    transition: color $transition-normal, background-color $transition-normal;
-
+    transition:
+      color $transition-normal,
+      background-color $transition-normal;
 
     &:hover {
       background-color: rgba($color-border, $opacity-50);

@@ -49,10 +49,8 @@ const interval = 3000;
 export function HardwareStatsDropdown() {
   const cpuTemp = createPoll(0, interval, () => readCpuTemp() / 100);
 
-  const cpuStats = createPoll(
-    initialCpuStats,
-    interval,
-    (prev) => getCpuStats(prev.current),
+  const cpuStats = createPoll(initialCpuStats, interval, (prev) =>
+    getCpuStats(prev.current),
   );
 
   const cpuUsage = createComputed([cpuStats], ({ current, previous }) => {
@@ -105,19 +103,13 @@ export function HardwareStatsDropdown() {
             icon=""
             title="CPU Usage"
             value={cpuUsage}
-            label={createComputed(
-              [cpuUsage],
-              (v) => `${(v * 100).toFixed(0)}%`,
-            )}
+            label={createComputed([cpuUsage], (v) => `${(v * 100).toFixed(0)}%`)}
           />
           <Stat
             icon=""
             title="CPU Temperature"
             value={cpuTemp}
-            label={createComputed(
-              [cpuTemp],
-              (t) => `${(t * 100).toFixed(0)}󰔄`,
-            )}
+            label={createComputed([cpuTemp], (t) => `${(t * 100).toFixed(0)}󰔄`)}
           />
           <Stat
             icon=""
@@ -131,10 +123,7 @@ export function HardwareStatsDropdown() {
             value={storage((s) => s.percentage / 100)}
             label={createComputed(
               [storage],
-              (s) =>
-                `${s.percentage}% (${formatBytes(s.used)}/${
-                  formatBytes(s.total)
-                })`,
+              (s) => `${s.percentage}% (${formatBytes(s.used)}/${formatBytes(s.total)})`,
             )}
           />
         </box>

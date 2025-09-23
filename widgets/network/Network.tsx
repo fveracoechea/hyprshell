@@ -8,10 +8,7 @@ export function Network() {
   const icon = getNetworkIcon(AstalNetwork.get_default());
   return (
     <box>
-      <menubutton
-        class="icon-button"
-        halign={Gtk.Align.CENTER}
-      >
+      <menubutton class="icon-button" halign={Gtk.Align.CENTER}>
         <label class="icon" label={icon} />
         <NetworkDropdown />
       </menubutton>

@@ -1,6 +1,5 @@
 @use "../variables" as *;
 
-
 switch {
   transition: background-color 250ms ease;
   background-color: $color-border;

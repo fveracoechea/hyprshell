@@ -1,8 +1,5 @@
 import { Gtk } from "ags/gtk4";
-import {
-  notificationIcon,
-  NotificationsDropdown,
-} from "./NotificationsDropdown";
+import { notificationIcon, NotificationsDropdown } from "./NotificationsDropdown";
 
 export function Notifications() {
   return (

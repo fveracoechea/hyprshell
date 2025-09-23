@@ -9,9 +9,9 @@ import { Dropdown } from "../../styles/components/Dropdown";
 export function BluetoothDropdown() {
   const bluetooth = AstalBluetooth.get_default();
   const activeSignal = createBinding(bluetooth, "is_powered");
-  const devicesSignal = createBinding(bluetooth, "devices").as((
-    devices: AstalBluetooth.Device[],
-  ) => devices.filter((d) => d.connected || d.paired));
+  const devicesSignal = createBinding(bluetooth, "devices").as(
+    (devices: AstalBluetooth.Device[]) => devices.filter((d) => d.connected || d.paired),
+  );
 
   return (
     <Dropdown
@@ -67,40 +67,27 @@ export function BluetoothDropdown() {
               }
 
               return (
-                <box
-                  hexpand
-                  spacing={8}
-                  orientation={Gtk.Orientation.VERTICAL}
-                >
+                <box hexpand spacing={8} orientation={Gtk.Orientation.VERTICAL}>
                   <For each={devicesSignal}>
                     {(device: AstalBluetooth.Device) => {
                       const connected = createBinding(device, "connected");
                       const paired = createBinding(device, "paired");
 
-                      const status = createComputed(
-                        [connected, paired],
-                        (c, p) => {
-                          if (c) return "connected";
-                          if (p) return "paired";
-                          return "none";
-                        },
-                      );
+                      const status = createComputed([connected, paired], (c, p) => {
+                        if (c) return "connected";
+                        if (p) return "paired";
+                        return "none";
+                      });
 
-                      const icon = createComputed(
-                        [connected, paired],
-                        (c, p) => {
-                          if (c) return "";
-                          if (p) return "󱘖";
-                          return "";
-                        },
-                      );
+                      const icon = createComputed([connected, paired], (c, p) => {
+                        if (c) return "";
+                        if (p) return "󱘖";
+                        return "";
+                      });
 
                       return (
                         <box spacing={16} hexpand class="bluetooth-device">
-                          <image
-                            pixelSize={24}
-                            iconName={device.icon || ""}
-                          />
+                          <image pixelSize={24} iconName={device.icon || ""} />
                           <label
                             hexpand
                             class={status((s) => `${s} name`)}

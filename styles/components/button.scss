@@ -1,7 +1,6 @@
 @use "../variables" as *;
 @use "../mixins" as *;
 
-
 .button {
   @include button();
 }
@@ -24,7 +23,6 @@
     background-color: rgba($color-primary, $opacity-75);
   }
 }
-
 
 .icon-button {
   @include button($spacing-2);

@@ -20,7 +20,7 @@ export function SysTray() {
     <box
       spacing={24}
       visible={items((i) => i.length > 0)}
-      class={open((o) => o ? "open tray" : "tray")}
+      class={open((o) => (o ? "open tray" : "tray"))}
     >
       <revealer
         revealChild={open}
@@ -44,9 +44,7 @@ export function SysTray() {
       </revealer>
       <button
         class="icon-button"
-        tooltipText={open((
-          o,
-        ) => (o ? "Close System Tray" : "Open System Tray"))}
+        tooltipText={open((o) => (o ? "Close System Tray" : "Open System Tray"))}
         onClicked={() => setOpen((v) => !v)}
         valign={Gtk.Align.CENTER}
         halign={Gtk.Align.CENTER}

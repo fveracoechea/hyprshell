@@ -8,7 +8,6 @@
   -gtk-icon-size: $size;
 }
 
-
 @mixin active-state($bg-color: $color-primary, $text-color: $color-crust) {
   &.active {
     background-color: $bg-color;
@@ -16,11 +15,12 @@
   }
 }
 
-
 @mixin button($padding-x: $spacing-3, $padding-y: 0, $radius: $radius-lg) {
   padding: $padding-y $padding-x;
   border-radius: $radius;
-  transition: color $transition-normal, background-color $transition-normal;
+  transition:
+    color $transition-normal,
+    background-color $transition-normal;
   color: $color-text;
 
   &:hover {

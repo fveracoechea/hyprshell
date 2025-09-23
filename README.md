@@ -21,17 +21,20 @@ A modern desktop shell built with [AGS (Astal GTK4)](https://aylur.github.io/ags
 ### Using Nix Flakes
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/your-username/hyprshell.git
 cd hyprshell
 ```
 
 2. Build and install:
+
 ```bash
 nix build
 ```
 
 3. Run the shell:
+
 ```bash
 ./result/bin/my-shell
 ```
@@ -39,11 +42,13 @@ nix build
 ### Development Setup
 
 1. Enter the development shell:
+
 ```bash
 nix develop
 ```
 
 2. Run in development mode:
+
 ```bash
 ags run app.ts
 ```

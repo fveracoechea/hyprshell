@@ -10,10 +10,7 @@ const step = 5;
 export function Volume() {
   return (
     <box>
-      <menubutton
-        class="icon-button"
-        halign={Gtk.Align.CENTER}
-      >
+      <menubutton class="icon-button" halign={Gtk.Align.CENTER}>
         {""}
         <VolumeDropdown />
       </menubutton>

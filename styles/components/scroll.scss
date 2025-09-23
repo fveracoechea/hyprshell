@@ -1,18 +1,17 @@
 @use "../variables" as *;
 
-
 scrollbar {
   transition: background-color 250ms ease;
   background-color: transparent;
   border-radius: $radius-lg;
 }
 
-scrollbar>range>trough {
+scrollbar > range > trough {
   background-color: $color-base;
   border-radius: $radius-lg;
 }
 
-scrollbar>range>trough>slider {
+scrollbar > range > trough > slider {
   transition: background-color 250ms ease;
   background-color: rgba($color-border, $opacity-50);
   border-radius: $radius-lg;

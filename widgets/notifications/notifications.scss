@@ -1,6 +1,5 @@
 @use "../../styles/variables" as *;
 
-
 .notifications-content {
   .no-notifications {
     padding: $spacing-2;
@@ -27,8 +26,9 @@
   .notification-card {
     border-radius: $radius-lg;
     background-color: $color-base;
-    transition: border-color 250ms ease, background-color 250ms ease;
-
+    transition:
+      border-color 250ms ease,
+      background-color 250ms ease;
 
     &.clickable:hover {
       background-color: $color-crust;
@@ -47,7 +47,6 @@
         padding-right: $spacing-8;
       }
     }
-
 
     .no-image {
       padding-top: $spacing-2;
@@ -89,7 +88,5 @@
         color: $color-secondary;
       }
     }
-
   }
-
 }

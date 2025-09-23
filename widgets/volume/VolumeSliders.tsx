@@ -9,16 +9,11 @@ type SliderProps = { device: AstalWp.Device; icon: string };
 function Slider(props: SliderProps) {
   const { icon, device } = props;
   const volume = createBinding(device, "volume");
-  const speakerName = createBinding(device, "description").as((d) =>
-    d ?? "Unknown Speaker"
+  const speakerName = createBinding(device, "description").as(
+    (d) => d ?? "Unknown Speaker",
   );
   return (
-    <box
-      hexpand
-      class="sliders"
-      spacing={4}
-      orientation={Gtk.Orientation.VERTICAL}
-    >
+    <box hexpand class="sliders" spacing={4} orientation={Gtk.Orientation.VERTICAL}>
       <label
         class="device-name"
         halign={Gtk.Align.START}
@@ -37,10 +32,7 @@ function Slider(props: SliderProps) {
           valign={Gtk.Align.CENTER}
           onChangeValue={(self) => device.set_volume(self.value)}
         />
-        <label
-          class="label"
-          label={volume.as((v) => `${(v * 100).toFixed(0)}%`)}
-        />
+        <label class="label" label={volume.as((v) => `${(v * 100).toFixed(0)}%`)} />
       </box>
     </box>
   );
@@ -51,11 +43,7 @@ export function VolumeSliders() {
   const speaker = Wp.audio.defaultSpeaker;
   const mic = Wp.audio.default_microphone;
   return (
-    <box
-      hexpand
-      spacing={18}
-      orientation={Gtk.Orientation.VERTICAL}
-    >
+    <box hexpand spacing={18} orientation={Gtk.Orientation.VERTICAL}>
       <Slider device={speaker} icon="" />
       <Slider device={mic} icon="" />
     </box>

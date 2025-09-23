@@ -5,7 +5,9 @@
     padding: 0 $spacing-1_5;
     border-radius: $radius;
     font-weight: 300;
-    transition: color $transition-normal, background-color $transition-normal;
+    transition:
+      color $transition-normal,
+      background-color $transition-normal;
     color: $color-subtext;
 
     &:hover {

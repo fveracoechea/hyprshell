@@ -28,7 +28,5 @@ export function notificationHandler(
 }
 
 export function time(timestamp: number, format = "%I:%M %p"): string {
-  return GLib.DateTime
-    .new_from_unix_local(timestamp)
-    .format(format) ?? "--";
+  return GLib.DateTime.new_from_unix_local(timestamp).format(format) ?? "--";
 }

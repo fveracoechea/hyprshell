@@ -102,11 +102,7 @@ function NetStat(props: NetStatProps) {
           valign={Gtk.Align.START}
         />
       </box>
-      <label
-        class="label"
-        valign={Gtk.Align.START}
-        label={label}
-      />
+      <label class="label" valign={Gtk.Align.START} label={label} />
     </box>
   );
 }
@@ -139,11 +135,7 @@ export function NetworkDropdown() {
       )}
     >
       {() => (
-        <box
-          class="net-content"
-          orientation={Gtk.Orientation.VERTICAL}
-          spacing={24}
-        >
+        <box class="net-content" orientation={Gtk.Orientation.VERTICAL} spacing={24}>
           <With value={wiredBinding}>
             {(wired) => {
               if (!wired) {
@@ -183,12 +175,11 @@ export function NetworkDropdown() {
                 <NetStat
                   icon={createBinding(wifi, "state")(getWifiIcon)}
                   subtitle={createBinding(wifi, "state")(getDeviceState)}
-                  title={createBinding(wifi, "ssid")((v) =>
-                    v ? `Wi-Fi: ${v}` : "No Wi-Fi Connected"
-                  )}
-                  label={createBinding(wifi, "strength")((s) =>
-                    s ? `${s}%` : "N/A"
-                  )}
+                  title={createBinding(
+                    wifi,
+                    "ssid",
+                  )((v) => (v ? `Wi-Fi: ${v}` : "No Wi-Fi Connected"))}
+                  label={createBinding(wifi, "strength")((s) => (s ? `${s}%` : "N/A"))}
                 />
               );
             }}

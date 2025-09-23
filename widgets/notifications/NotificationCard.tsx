@@ -70,11 +70,7 @@ export function NotificationCard(props: NotificationCardProps) {
             orientation={Gtk.Orientation.VERTICAL}
             class="card-content"
           >
-            <box
-              hexpand
-              spacing={8}
-              class="header"
-            >
+            <box hexpand spacing={8} class="header">
               <label
                 hexpand
                 class="app"

@@ -32,14 +32,7 @@ type DropdownContentProps = {
 };
 
 export function Dropdown(props: DropdownContentProps) {
-  const {
-    actions,
-    children,
-    name,
-    icon,
-    widthRequest = 450,
-    heightRequest,
-  } = props;
+  const { actions, children, name, icon, widthRequest = 450, heightRequest } = props;
 
   const [popover, setPopover] = createState(null) as State<Gtk.Popover | null>;
 
@@ -62,36 +55,14 @@ export function Dropdown(props: DropdownContentProps) {
             </With>
           </DropdownHeader>
 
-          {heightRequest
-            ? (
-              <scrolledwindow
-                hexpand
-                vexpand
-                heightRequest={heightRequest}
-                widthRequest={widthRequest}
-              >
-                <box
-                  hexpand
-                  vexpand
-                  class="dropdown-body"
-                >
-                  <With
-                    value={popover}
-                    children={(value) => {
-                      if (value) return children(value);
-                      return <box />;
-                    }}
-                  />
-                </box>
-              </scrolledwindow>
-            )
-            : (
-              <box
-                hexpand
-                vexpand
-                class="dropdown-body"
-                widthRequest={widthRequest}
-              >
+          {heightRequest ? (
+            <scrolledwindow
+              hexpand
+              vexpand
+              heightRequest={heightRequest}
+              widthRequest={widthRequest}
+            >
+              <box hexpand vexpand class="dropdown-body">
                 <With
                   value={popover}
                   children={(value) => {
@@ -100,7 +71,18 @@ export function Dropdown(props: DropdownContentProps) {
                   }}
                 />
               </box>
-            )}
+            </scrolledwindow>
+          ) : (
+            <box hexpand vexpand class="dropdown-body" widthRequest={widthRequest}>
+              <With
+                value={popover}
+                children={(value) => {
+                  if (value) return children(value);
+                  return <box />;
+                }}
+              />
+            </box>
+          )}
         </box>
       </box>
     </popover>

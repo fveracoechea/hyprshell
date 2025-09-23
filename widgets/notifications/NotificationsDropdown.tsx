@@ -1,7 +1,13 @@
 import AstalNotifd from "gi://AstalNotifd";
 import { Dropdown } from "../../styles/components/Dropdown";
 import { Gtk } from "ags/gtk4";
-import { createBinding, createComputed, createState, For, onCleanup } from "ags";
+import {
+  createBinding,
+  createComputed,
+  createState,
+  For,
+  onCleanup,
+} from "ags";
 import { notificationHandler } from "./utils";
 import { NotificationCard } from "./NotificationCard";
 import { createPoll } from "ags/time";
@@ -57,10 +63,14 @@ export function NotificationsDropdown() {
             class="icon-button"
             valign={Gtk.Align.START}
             tooltipText="Clear All Notifications"
-            visible={notifications((n) => n.length > 0)}
+            visible={notifications((n) =>
+              n.length > 0
+            )}
             onClicked={() => {
               const nts = notifications.get();
-              nts.forEach((n) => n.dismiss());
+              nts.forEach((n) =>
+                n.dismiss()
+              );
             }}
           >
             <label label="󰩹" class="icon" />
@@ -75,7 +85,9 @@ export function NotificationsDropdown() {
           class="notifications-content"
           orientation={Gtk.Orientation.VERTICAL}
         >
-          <For each={notifications((n) => [...n].sort((a, b) => b.time - b.time))}>
+          <For
+            each={notifications((n) => [...n].sort((a, b) => b.time - b.time))}
+          >
             {(n: AstalNotifd.Notification) => {
               return <NotificationCard data={n} popover={popover} />;
             }}

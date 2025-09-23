@@ -13,7 +13,12 @@ function Slider(props: SliderProps) {
     (d) => d ?? "Unknown Speaker",
   );
   return (
-    <box hexpand class="sliders" spacing={4} orientation={Gtk.Orientation.VERTICAL}>
+    <box
+      hexpand
+      class="sliders"
+      spacing={4}
+      orientation={Gtk.Orientation.VERTICAL}
+    >
       <label
         class="device-name"
         halign={Gtk.Align.START}
@@ -32,7 +37,10 @@ function Slider(props: SliderProps) {
           valign={Gtk.Align.CENTER}
           onChangeValue={(self) => device.set_volume(self.value)}
         />
-        <label class="label" label={volume.as((v) => `${(v * 100).toFixed(0)}%`)} />
+        <label
+          class="label"
+          label={volume.as((v) => `${(v * 100).toFixed(0)}%`)}
+        />
       </box>
     </box>
   );

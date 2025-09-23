@@ -4,17 +4,19 @@
 
   .net-stat {
     label.icon {
-      color: $color-text;
-      font-size: $text-2xl;
+      padding: $spacing-2;
+      color: $color-border;
+      font-size: $text-3xl;
     }
 
     label.title {
       font-size: $text-md;
       color: $color-text;
+      font-weight: 500;
     }
 
     label.subtitle {
-      font-size: $text-md;
+      font-size: $text-sm;
       color: $color-subtext;
     }
 

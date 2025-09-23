@@ -3,7 +3,7 @@ import AstalNotifd from "gi://AstalNotifd";
 import Pango from "gi://Pango";
 import GLib from "gi://GLib";
 import { Accessor } from "ags";
-import { formatTime, time } from "./utils";
+import { time } from "./utils";
 import { logObject } from "../../utils/log";
 
 function fileExists(path: string) {
@@ -15,90 +15,112 @@ function NotificationIcon(props: { notification: AstalNotifd.Notification }) {
 
   if (notification.image && fileExists(notification.image)) {
     return (
-      <image
-        class="app-icon"
-        file={notification.image}
-        overflow={Gtk.Overflow.HIDDEN}
-        valign={Gtk.Align.CENTER}
-      />
+      <box class="icon-content" valign={Gtk.Align.START}>
+        <image
+          class="app-icon"
+          file={notification.image}
+          overflow={Gtk.Overflow.HIDDEN}
+        />
+      </box>
     );
   }
 
   if (notification.appIcon || notification.desktopEntry) {
     return (
-      <image
-        class="app-icon"
-        iconName={notification.appIcon || notification.desktopEntry}
-        valign={Gtk.Align.CENTER}
-      />
+      <box class="icon-content" valign={Gtk.Align.START}>
+        <image
+          class="app-icon"
+          iconName={notification.appIcon || notification.desktopEntry}
+        />
+      </box>
     );
   }
 
-  return <label class="no-image" label="󰂜" valign={Gtk.Align.CENTER} />;
+  return <label class="no-image" label="󰂜" valign={Gtk.Align.START} />;
 }
 
-export const NotificationCardWidth = 500;
-
 type NotificationCardProps = {
+  popover: Gtk.Popover;
   data: AstalNotifd.Notification;
 };
 
 export function NotificationCard(props: NotificationCardProps) {
-  const { data } = props;
-  return (
-    <box class="notification-card">
-      <box class="icon-content">
-        <NotificationIcon notification={data} />
-      </box>
+  const { data, popover } = props;
+  const action = data.actions?.at(0) as AstalNotifd.Action | undefined;
 
-      <box orientation={Gtk.Orientation.VERTICAL} hexpand>
-        <box
-          hexpand
-          spacing={4}
-          orientation={Gtk.Orientation.VERTICAL}
-          class="card-content"
-        >
+  let className = "notification-card";
+  if (action) className += " clickable";
+  if (data.urgency === AstalNotifd.Urgency.CRITICAL) className += " urgent";
+
+  return (
+    <box spacing={0}>
+      <button
+        class={className}
+        onClicked={(source) => {
+          if (!action) return;
+          popover.popdown();
+          data.invoke(action.id);
+        }}
+      >
+        <box>
+          <NotificationIcon notification={data} />
           <box
             hexpand
-            spacing={8}
+            spacing={4}
+            orientation={Gtk.Orientation.VERTICAL}
+            class="card-content"
           >
+            <box
+              hexpand
+              spacing={8}
+              class="header"
+            >
+              <label
+                hexpand
+                class="app"
+                label={data.app_name}
+                halign={Gtk.Align.START}
+                valign={Gtk.Align.CENTER}
+              />
+              <label
+                class="time"
+                halign={Gtk.Align.END}
+                valign={Gtk.Align.CENTER}
+                label={time(data.time)}
+              />
+            </box>
             <label
               hexpand
-              class="app"
-              label={data.app_name}
+              class="title"
+              maxWidthChars={50}
+              label={data.summary}
               halign={Gtk.Align.START}
+              ellipsize={Pango.EllipsizeMode.END}
             />
             <label
-              class="time"
-              halign={Gtk.Align.END}
-              label={time(data.time)}
+              class="body"
+              hexpand
+              wrap
+              lines={5}
+              justify={Gtk.Justification.LEFT}
+              maxWidthChars={50}
+              ellipsize={Pango.EllipsizeMode.END}
+              label={data.body}
+              halign={Gtk.Align.START}
+              visible={Boolean(data.body)}
             />
-            <button
-              class="button close-button"
-              halign={Gtk.Align.END}
-              onClicked={() => data.dismiss()}
-            >
-              <label class="icon" label="" />
-            </button>
           </box>
-          <label
-            hexpand
-            class="title"
-            maxWidthChars={50}
-            label={data.summary}
-            halign={Gtk.Align.START}
-            tooltipMarkup={data.summary}
-            ellipsize={Pango.EllipsizeMode.END}
-          />
-          <label
-            wrap
-            class="body"
-            label={data.body}
-            visible={Boolean(data.body)}
-            halign={Gtk.Align.START}
-          />
         </box>
-      </box>
+      </button>
+
+      <button
+        class="icon-button close-button"
+        halign={Gtk.Align.END}
+        valign={Gtk.Align.START}
+        onClicked={() => console.log("dismiss")}
+      >
+        {""}
+      </button>
     </box>
   );
 }

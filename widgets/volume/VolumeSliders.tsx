@@ -24,7 +24,7 @@ function Slider(props: SliderProps) {
         halign={Gtk.Align.START}
         label={speakerName}
         hexpand
-        maxWidthChars={40}
+        maxWidthChars={45}
         ellipsize={Pango.EllipsizeMode.END}
       />
       <box spacing={18} hexpand>

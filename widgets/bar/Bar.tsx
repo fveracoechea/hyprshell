@@ -1,6 +1,5 @@
 import app from "ags/gtk4/app";
-import { Astal, Gdk, Gtk } from "ags/gtk4";
-import { exec } from "ags/process";
+import { Astal, Gdk } from "ags/gtk4";
 import { Calendar } from "../calendar/Calendar";
 import { onCleanup } from "ags";
 import { SysTray } from "../systray/SysTray";
@@ -10,14 +9,13 @@ import { Workspaces } from "../workspaces/Workspaces";
 import { Notifications } from "../notifications/Notifications";
 import { Bluetooth } from "../bluetooth/Bluetooth";
 import { Performance } from "../performance/Performance";
+import { Dashboard } from "../dashbaord/Dashboard";
 
 type BarProps = { gdkmonitor: Gdk.Monitor };
 
 export default function Bar(props: BarProps) {
   const { gdkmonitor } = props;
-
   const { TOP } = Astal.WindowAnchor;
-  const username = exec("whoami").trim();
 
   return (
     <window
@@ -35,10 +33,7 @@ export default function Bar(props: BarProps) {
     >
       <centerbox cssName="centerbox">
         <box $type="start" spacing={28}>
-          <box spacing={12}>
-            <label label="󱄅" class="logo-icon" />
-            <label label={username} class="username" />
-          </box>
+          <Dashboard />
           <Workspaces />
         </box>
 

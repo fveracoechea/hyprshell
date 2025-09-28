@@ -10,13 +10,14 @@
 
 // Widget-specific styles
 @use "../widgets/bar/bar";
-@use "../widgets/performance/performance";
 @use "../widgets/volume/volume";
 @use "../widgets/systray/systray";
 @use "../widgets/network/network";
 @use "../widgets/calendar/calendar";
 @use "../widgets/bluetooth/bluetooth";
+@use "../widgets/dashbaord/dashboard";
 @use "../widgets/workspaces/workspaces";
+@use "../widgets/performance/performance";
 @use "../widgets/notifications/notifications";
 
 :root {

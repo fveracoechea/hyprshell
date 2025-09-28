@@ -1,14 +1,9 @@
 import { Gtk } from "ags/gtk4";
 import AstalNotifd from "gi://AstalNotifd";
 import Pango from "gi://Pango";
-import GLib from "gi://GLib";
 import { Accessor } from "ags";
 import { time } from "./utils";
-import { logObject } from "../../utils/log";
-
-function fileExists(path: string) {
-  return GLib.file_test(path, GLib.FileTest.EXISTS);
-}
+import { fileExists } from "../../utils/file";
 
 function NotificationIcon(props: { notification: AstalNotifd.Notification }) {
   const { notification } = props;

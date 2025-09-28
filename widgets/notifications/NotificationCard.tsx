@@ -60,6 +60,7 @@ export function NotificationCard(props: NotificationCardProps) {
           if (!action) return;
           popover.popdown();
           data.invoke(action.id);
+          data.dismiss();
         }}
       >
         <box>
@@ -113,7 +114,7 @@ export function NotificationCard(props: NotificationCardProps) {
         class="icon-button close-button"
         halign={Gtk.Align.END}
         valign={Gtk.Align.START}
-        onClicked={() => console.log("dismiss")}
+        onClicked={() => data.dismiss()}
       >
         {""}
       </button>

@@ -4,11 +4,7 @@
     "gnim": "*"
   },
   "prettier": {
-    "printWidth": 90,
-    "semi": true,
+    "semi": false,
     "tabWidth": 2
-  },
-  "devDependencies": {
-    "sass": "^1.77.8"
   }
 }

@@ -5,8 +5,6 @@ import { execAsync } from "ags/process";
 import AstalNetwork from "gi://AstalNetwork";
 
 import { Dropdown } from "../../styles/components/Dropdown";
-import GL from "gi://GL?version=1.0";
-import { logObject } from "../../utils/log";
 
 export function getNetworkIcon(network: AstalNetwork) {
   return createComputed([createBinding(network, "primary")], (p) => {
@@ -135,7 +133,10 @@ export function NetworkDropdown() {
       )}
     >
       {() => (
-        <box class="net-content" orientation={Gtk.Orientation.VERTICAL} spacing={24}>
+        <box
+          class="net-content"
+          orientation={Gtk.Orientation.VERTICAL}
+        >
           <With value={wiredBinding}>
             {(wired) => {
               if (!wired) {
@@ -179,7 +180,9 @@ export function NetworkDropdown() {
                     wifi,
                     "ssid",
                   )((v) => (v ? `Wi-Fi: ${v}` : "No Wi-Fi Connected"))}
-                  label={createBinding(wifi, "strength")((s) => (s ? `${s}%` : "N/A"))}
+                  label={createBinding(wifi, "strength")((
+                    s,
+                  ) => (s ? `${s}%` : "N/A"))}
                 />
               );
             }}

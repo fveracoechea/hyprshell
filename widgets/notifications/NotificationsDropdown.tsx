@@ -42,7 +42,7 @@ export function NotificationsDropdown() {
   return (
     <Dropdown
       icon={notificationIcon}
-      name="Notifications"
+      name={notifications((nts) => `${nts.length} Notifications`)}
       heightRequest={550}
       widthRequest={500}
       actions={() => (

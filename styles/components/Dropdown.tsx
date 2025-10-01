@@ -4,7 +4,7 @@ import Graphene from "gi://Graphene";
 import app from "ags/gtk4/app";
 
 type DropdownHeaderProps = {
-  name: string;
+  name: string | Accessor<string>;
   icon: string | Accessor<string>;
   children?: JSX.Element;
 };
@@ -23,7 +23,7 @@ export function DropdownHeader(props: DropdownHeaderProps) {
 }
 
 type DropdownContentProps = {
-  name?: string;
+  name?: string | Accessor<string>;
   icon?: string | Accessor<string>;
   actions?: (popover: Gtk.Popover) => JSX.Element;
   children: (popover: Gtk.Popover) => JSX.Element;

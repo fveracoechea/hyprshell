@@ -19,6 +19,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
     pname = "my-shell";
     entry = "app.ts";
+    scripts = import ./scripts.nix {inherit pkgs;};
 
     astalPackages = with ags.packages.${system}; [
       io
@@ -34,11 +35,13 @@
     ];
 
     extraBuildInputs = with pkgs; [
+      grimblast
       btop
       impala
       wiremix
       blueberry
       libgtop
+      scripts.screenshot
     ];
 
     extraPackages =

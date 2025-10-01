@@ -2,21 +2,20 @@
 
 .dashboard-dropdown {
   .profile {
-    image.face {
+    .face {
       border-radius: $radius-lg;
-      border: 2px solid $color-border;
-      min-width: $spacing-12 * 5;
-      min-height: $spacing-12 * 5;
-    }
-
-    image.fallback {
-      -gtk-icon-size: $icon-size-3xl;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
     }
 
   }
 
   .system-actions {
+    button.button {
 
-    .button {}
+      .icon {
+        font-size: $text-2xl;
+      }
+    }
   }
 }

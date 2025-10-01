@@ -7,7 +7,7 @@
     outputPath="$outputDir/$outputFile"
     mkdir -p "$outputDir"
 
-    mode=${1:-area}
+    mode=''${1:-area}
 
     case "$mode" in
     active)
@@ -35,6 +35,6 @@
             -u normal \
             --action="scriptAction:-xdg-open $outputDir=Directory" \
             --action="scriptAction:-xdg-open $recentFile=View"
-  fi
+    fi
   '';
 }

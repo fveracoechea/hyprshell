@@ -1,5 +1,6 @@
 import { Gtk } from "ags/gtk4";
 import { createPoll } from "ags/time";
+import { Dropdown } from "../../styles/components/Dropdown";
 
 export function Calendar() {
   const time = createPoll("", 1000 * 10, `date +"%I:%M %p"`);
@@ -10,9 +11,7 @@ export function Calendar() {
         <label label={time} class="time-label" />
         <label label={date} class="date-label" />
       </box>
-      <popover>
-        <Gtk.Calendar />
-      </popover>
+      <Dropdown>{() => <Gtk.Calendar hexpand />}</Dropdown>
     </menubutton>
   );
 }

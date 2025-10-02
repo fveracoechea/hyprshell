@@ -4,7 +4,7 @@ A modern desktop shell built with
 [AGS (Astal GTK4)](https://aylur.github.io/ags-docs/) and TypeScript. Features a
 clean, customizable status bar with time, calendar, and system information.
 
-![Watch the demo!](./demo.webm)
+![Watch the demo!](./demo.mp4)
 
 ## Features
 

@@ -1,6 +1,10 @@
 # hyprshell
 
-A modern desktop shell built with [AGS (Astal GTK4)](https://aylur.github.io/ags-docs/) and TypeScript. Features a clean, customizable status bar with time, calendar, and system information.
+A modern desktop shell built with
+[AGS (Astal GTK4)](https://aylur.github.io/ags-docs/) and TypeScript. Features a
+clean, customizable status bar with time, calendar, and system information.
+
+![Watch the demo!](./demo.webm)
 
 ## Features
 
@@ -55,7 +59,8 @@ ags run app.ts
 
 ## Configuration
 
-The shell configuration is primarily in `app.ts`. The bar layout and styling can be customized by modifying:
+The shell configuration is primarily in `app.ts`. The bar layout and styling can
+be customized by modifying:
 
 - `widget/Bar.tsx` - Main bar component and layout
 - `widget/Calendar.tsx` - Time and calendar widgets
@@ -87,7 +92,8 @@ The shell configuration is primarily in `app.ts`. The bar layout and styling can
 
 ### Building CSS
 
-TailwindCSS is automatically processed during AGS startup, but you can manually build it:
+TailwindCSS is automatically processed during AGS startup, but you can manually
+build it:
 
 ```bash
 tailwindcss -i styles/main.css

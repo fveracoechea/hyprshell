@@ -4,18 +4,23 @@ scrollbar {
   transition: background-color 250ms ease;
   background-color: transparent;
   border-radius: $radius-lg;
-}
 
-scrollbar > range > trough {
-  background-color: $color-base;
-  border-radius: $radius-lg;
-}
+  &>range>trough {
+    background-color: $color-base;
+    border-radius: $radius-lg;
 
-scrollbar > range > trough > slider {
-  transition: background-color 250ms ease;
-  background-color: rgba($color-border, $opacity-50);
-  border-radius: $radius-lg;
-  min-width: $spacing-1_5;
-  min-height: $spacing-1_5;
-  margin: 4px;
+    &>slider {
+      background-color: rgba($color-border, $opacity-75);
+      transition: background-color 250ms ease;
+      background-color: rgba($color-border, $opacity-50);
+      border-radius: $radius-lg;
+      min-width: $spacing-1_5;
+      min-height: $spacing-1_5;
+      margin: 4px;
+    }
+  }
+
+  &:hover>range>trough>slider {
+    background-color: $color-border;
+  }
 }

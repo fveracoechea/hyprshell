@@ -7,14 +7,53 @@
       background-size: 100% 100%;
       background-repeat: no-repeat;
     }
+  }
 
+  .utils {
+    button {
+      border: 1px solid transparent;
+      padding: $spacing-1 $spacing-2;
+      border-radius: $radius-lg;
+      transition: color 250ms ease, background-color 250ms ease, border-color 250ms ease;
+
+      .icon {
+        font-size: $text-xl;
+      }
+
+      &:hover {
+        border: 1px solid $color-border;
+        background-color: rgba($color-border, 0.5);
+        color: $color-primary;
+
+        .icon {
+          color: $color-primary;
+        }
+      }
+    }
   }
 
   .system-actions {
-    button.button {
+    button {
+      border-radius: $radius-lg;
+      border: 1px solid transparent;
+      transition: color 250ms ease, background-color 250ms ease, border-color 250ms ease;
+      min-width: $spacing-12 * 2;
+      padding: $spacing-2 $spacing-1;
 
       .icon {
-        font-size: $text-2xl;
+        transition: color 250ms ease, background-color 250ms ease;
+        color: $color-secondary;
+        font-size: $text-3xl;
+      }
+
+      &:hover {
+        border: 1px solid $color-border;
+        background-color: rgba($color-border, 0.5);
+        color: $color-primary;
+
+        .icon {
+          color: $color-primary;
+        }
       }
     }
   }

@@ -17,8 +17,8 @@
   }: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    pname = "my-shell";
-    entry = "app.ts";
+    pname = "";
+    entry = "app.tsx";
     scripts = import ./scripts.nix {inherit pkgs;};
 
     astalPackages = with ags.packages.${system}; [
@@ -35,7 +35,9 @@
     ];
 
     extraBuildInputs = with pkgs; [
+      kooha
       grimblast
+      hyprpicker
       btop
       impala
       wiremix

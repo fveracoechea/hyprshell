@@ -14,46 +14,53 @@
     nixpkgs,
     ags,
   }: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
     pname = "hyprshell";
     entry = "app.tsx";
-    scripts = import ./scripts.nix {inherit pkgs;};
 
-    astalPackages = with ags.packages.${system}; [
-      io
-      astal4
-      tray
-      mpris
-      apps
-      hyprland
-      bluetooth
-      network
-      wireplumber
-      notifd
-    ];
+    forAllSys = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
 
-    extraBuildInputs = with pkgs; [
-      kooha
-      grimblast
-      hyprpicker
-      btop
-      impala
-      wiremix
-      blueberry
-      libgtop
-      scripts.screenshot
-    ];
+    getPackages = system: rec {
+      pkgs = import nixpkgs {inherit system;};
 
-    extraPackages =
-      astalPackages
-      ++ extraBuildInputs
-      ++ [
-        pkgs.libadwaita
-        pkgs.libsoup_3
+      scripts = import ./scripts.nix {inherit pkgs;};
+
+      dependencies = with pkgs; [
+        kooha
+        grimblast
+        hyprpicker
+        btop
+        impala
+        wiremix
+        blueberry
+        libgtop
+        scripts.screenshot
       ];
+
+      astalPackages = with ags.packages.${system}; [
+        io
+        astal4
+        tray
+        mpris
+        apps
+        hyprland
+        bluetooth
+        network
+        wireplumber
+        notifd
+      ];
+
+      extraPackages =
+        astalPackages
+        ++ dependencies
+        ++ [
+          pkgs.libadwaita
+          pkgs.libsoup_3
+        ];
+    };
   in {
-    packages.${system} = {
+    packages = forAllSys (system: let
+      inherit (getPackages system) pkgs extraPackages dependencies;
+    in {
       default = pkgs.stdenv.mkDerivation {
         name = pname;
         src = ./.;
@@ -76,10 +83,19 @@
 
           runHook postInstall
         '';
-      };
-    };
 
-    devShells.${system} = {
+        # runtime executables
+        preFixup = ''
+          gappsWrapperArgs+=(
+            --prefix PATH : ${pkgs.lib.makeBinPath dependencies}
+          )
+        '';
+      };
+    });
+
+    devShells = forAllSys (system: let
+      inherit (getPackages system) pkgs extraPackages dependencies;
+    in {
       default = pkgs.mkShell {
         buildInputs =
           [
@@ -87,8 +103,8 @@
               inherit extraPackages;
             })
           ]
-          ++ extraBuildInputs;
+          ++ dependencies;
       };
-    };
+    });
   };
 }

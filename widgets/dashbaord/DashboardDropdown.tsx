@@ -64,6 +64,7 @@ const UtilsActions = {
   "Search Apps": {
     icon: "",
     action() {
+      // TODO: Implement app search
       // execAsync("hyprpicker --autocopy").catch((e) => console.log(e));
     },
   },
@@ -82,7 +83,7 @@ const UtilsActions = {
   Screenshot: {
     icon: "󰹑",
     action() {
-      execAsync("hyprshell-screenshot").catch((e) => console.log(e));
+      execAsync("ultrashell-screenshot").catch((e) => console.log(e));
     },
   },
 } as const;

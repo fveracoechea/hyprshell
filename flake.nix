@@ -14,8 +14,8 @@
     nixpkgs,
     ags,
   }: let
-    pname = "hyprshell";
     entry = "app.tsx";
+    pname = "ultrashell";
 
     forAllSys = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
 

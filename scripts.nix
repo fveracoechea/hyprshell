@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  screenshot = pkgs.writers.writeBashBin "hyprshell-screenshot" ''
+  screenshot = pkgs.writers.writeBashBin "ultrashell-screenshot" ''
     #!/usr/bin/env bash
 
     outputDir="$HOME/Pictures/Screenshots/"

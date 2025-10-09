@@ -1,4 +1,4 @@
-# hyprshell
+# ultrashell
 
 A modern desktop shell built with
 [AGS (Astal GTK4)](https://aylur.github.io/ags-docs/) and TypeScript. Features a
